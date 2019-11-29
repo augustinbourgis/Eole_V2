@@ -24,7 +24,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * Variable of the timer
 	 * @see Check()
 	 */
-	public Timer t = new Timer(10, new Check());
+	public Timer t = new Timer(1000, new Check());
 	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
