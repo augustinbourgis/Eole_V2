@@ -1,6 +1,5 @@
 package Principale;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,6 +52,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		setPreferredSize(new Dimension(1100, 730));
 		JPanel panGen = new JPanel(new BorderLayout());
 		JPanel panReg = new JPanel();
+		panReg.setBackground(new Color(175, 238, 238));
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblMin.setText("00");
@@ -65,8 +65,11 @@ public class FenChrono extends JFrame implements ActionListener{
 		lbl2.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		JPanel pan1Chrono = new JPanel(new GridLayout(2, 1));
 		JPanel pan2Chrono = new JPanel();
+		pan2Chrono.setBackground(new Color(175, 238, 238));
 		JPanel pan3Chrono = new JPanel();
+		pan3Chrono.setBackground(new Color(175, 238, 238));
 		JPanel Chrono = new JPanel();
+		Chrono.setBackground(new Color(175, 238, 238));
 		btnStart.setPreferredSize(new Dimension(100, 35));
 		btnStop.setPreferredSize(new Dimension(100, 35));
 		btnReset.setPreferredSize(new Dimension(100, 35));
@@ -83,12 +86,12 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan1Chrono.add(pan2Chrono);
 		pan1Chrono.add(pan3Chrono);
 		
-		pan1Chrono.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		Chrono.add(pan1Chrono);
 		panGen.add(Chrono, BorderLayout.NORTH);
 		
 		for(int i = 1; i <= 20; i++) {
 			JPanel b = new JPanel();
+			b.setBackground(new Color(175, 238, 238));
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
