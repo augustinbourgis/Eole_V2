@@ -57,7 +57,9 @@ public class FenInscription extends JFrame implements ActionListener{
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		
+		btnAjouterListe.setBounds(185, 351, 199, 23);
 		btnAjouterListe.setBackground(new Color(0,74,124));
+		btnDemarrerRegate.setBounds(185, 384, 199, 23);
 		btnDemarrerRegate.setBackground(new Color(0,74,124));
 		btnSupprimer.setBackground(new Color(0,85,142));
 		btnAjouterListe.setForeground(new Color(252,252,252));
@@ -66,43 +68,67 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.setBackground(new Color(207	,235,255));
 		panelListeParticipants.setBackground(new Color(207,235,255));
 		titreListe.setForeground(new Color(0,118,197));
+		titreParcours.setHorizontalAlignment(SwingConstants.CENTER);
+		titreParcours.setBounds(133, 23, 271, 34);
 		titreParcours.setForeground(new Color(0,118,197));
+		titreParticipant.setHorizontalAlignment(SwingConstants.CENTER);
+		titreParticipant.setBounds(133, 149, 271, 34);
 		titreParticipant.setForeground(new Color(0,118,197));
 		
 		//---- panel general----//
 		panelGen.setLayout(new GridLayout(1,2));
 		panelGen.add(panelGauche);
 		panelGen.add(panelListeParticipants);
-		
-		
-	
-		
-		//----panel parcours ---//
-		
-		panelGauche.setLayout(new GridLayout(13,2));
+		panelGauche.setLayout(null);
 
 		panelGauche.add(titreParcours);
-		panelGauche .add(new JLabel(""));
+		JLabel label = new JLabel("");
+		label.setBounds(271, 0, 271, 34);
+		panelGauche .add(label);
+		lNumero.setBounds(0, 57, 190, 34);
+		lNumero.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lNumero);
+		txtNumero.setBounds(207, 64, 208, 20);
 		panelGauche.add(txtNumero);
+		lDistance.setBounds(0, 80, 190, 34);
+		lDistance.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lDistance);
+		txtDistance.setBounds(207, 87, 208, 20);
 		panelGauche.add(txtDistance);
-		panelGauche .add(new JLabel(""));
-		panelGauche .add(new JLabel(""));
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(56, 102, 271, 34);
+		panelGauche .add(label_1);
+		JLabel label_2 = new JLabel("");
+		label_2.setBounds(271, 102, 271, 34);
+		panelGauche .add(label_2);
 		panelGauche.add(titreParticipant);
-		panelGauche .add(new JLabel(""));
+		lNumeroVoilier.setBounds(0, 187, 190, 34);
+		lNumeroVoilier.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		
 		//--- panel participant ---//
 		panelGauche.add(lNumeroVoilier);
+		txtNumeroVoilier.setBounds(207, 194, 208, 20);
 		panelGauche.add(txtNumeroVoilier);
+		lNomVoilier.setBounds(0, 210, 190, 34);
+		lNomVoilier.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lNomVoilier);
+		txtNomVoilier.setBounds(207, 217, 208, 20);
 		panelGauche.add(txtNomVoilier);
+		lClasse.setBounds(0, 232, 190, 34);
+		lClasse.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lClasse);
+		txtClasse.setBounds(207, 239, 208, 20);
 		panelGauche.add(txtClasse);
+		lRating.setBounds(0, 255, 190, 34);
+		lRating.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lRating);
+		txtRating.setBounds(207, 262, 208, 20);
 		panelGauche.add(txtRating);
+		lNomSkipper.setBounds(0, 277, 190, 34);
+		lNomSkipper.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelGauche.add(lNomSkipper);
+		txtNomSkipper.setBounds(207, 284, 208, 20);
 		panelGauche.add(txtNomSkipper);
 		
 		
@@ -110,9 +136,9 @@ public class FenInscription extends JFrame implements ActionListener{
 		
 		panelGauche.add(btnAjouterListe);
 		btnAjouterListe.addActionListener(this);
-		panelGauche .add(new JLabel(""));
-		panelGauche .add(new JLabel(""));
-		panelGauche .add(new JLabel(""));
+		JLabel label_4 = new JLabel("");
+		label_4.setBounds(271, 340, 271, 34);
+		panelGauche .add(label_4);
 		
 		panelGauche.add(btnDemarrerRegate);
 		btnDemarrerRegate.addActionListener(this);
