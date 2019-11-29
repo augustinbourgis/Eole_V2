@@ -35,6 +35,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	JButton btnStart = new JButton("Start");
 	JButton btnStop = new JButton("Stop");
 	JButton btnReset = new JButton("Reset");
+	JButton btnClassement = new JButton("Classement");
 	JLabel lblMin = new JLabel();
 	JLabel lblSec = new JLabel();
 	JLabel lblh = new JLabel();
@@ -52,9 +53,9 @@ public class FenChrono extends JFrame implements ActionListener{
 		setPreferredSize(new Dimension(1100, 730));
 		JPanel panGen = new JPanel(new BorderLayout());
 		JPanel panReg = new JPanel();
-		JPanel panSouth = new JPanel();
-		JButton btnClassement = new JButton("Classement");
-		panSouth.add(btnClassement);
+		btnClassement.setPreferredSize(new Dimension(200, 50));
+		btnClassement.setVisible(false);
+		btnClassement.setEnabled(false);
 		panReg.setBackground(new Color(207, 235, 255));
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
@@ -162,8 +163,8 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
+		panReg.add(btnClassement);
 		panGen.add(panReg);
-		panGen.add(panSouth, BorderLayout.SOUTH);
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
@@ -232,6 +233,8 @@ public class FenChrono extends JFrame implements ActionListener{
             }
             if(arrive == 0) {
     			t.stop();
+    			btnClassement.setVisible(true);
+    			btnClassement.setEnabled(true);
     		}
 		}
 	}
