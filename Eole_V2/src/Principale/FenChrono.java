@@ -4,11 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 /**
  * Description : Windows of the race
  * @author : Thomas DURST
- * @version : 2.0
+ * @version : 3.0
  * @see Class Regate
  */
 
@@ -28,10 +29,14 @@ public class FenChrono extends JFrame implements ActionListener{
 	public int min = 0;
 	public int sec = 0;
 	public int arrive = 20;
+	URL urlImage = getClass().getResource("/Other/Maquette/undo.png");
+	Icon icone = new ImageIcon(new ImageIcon(urlImage).getImage().getScaledInstance(18, 18, Image.SCALE_DEFAULT));
+	
 	
 	/**
 	 * JFrame global element
 	 */
+	JPanel panReg = new JPanel();
 	JButton btnStart = new JButton("Start");
 	JButton btnStop = new JButton("Stop");
 	JButton btnReset = new JButton("Reset");
@@ -47,12 +52,13 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * Description : Fen Chrono Initialisation composant
 	 * @author Thomas DURST
 	 * @see recupTemps()
+	 * @see btnBoucle()
 	 */
 	public FenChrono() {
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
+		setResizable(false);
 		JPanel panGen = new JPanel(new BorderLayout());
-		JPanel panReg = new JPanel();
 		btnClassement.setPreferredSize(new Dimension(200, 50));
 		btnClassement.setVisible(false);
 		btnClassement.setEnabled(false);
@@ -92,73 +98,8 @@ public class FenChrono extends JFrame implements ActionListener{
 		
 		Chrono.add(pan1Chrono);
 		panGen.add(Chrono, BorderLayout.NORTH);
-		
-		for(int i = 1; i <= 20; i++) {
-			JPanel b = new JPanel();
-			b.setBackground(new Color(207, 235, 255));
-			JLabel lblNom = new JLabel("Voilier DE FRED");
-			lblNom.setPreferredSize(new Dimension(250, 35));
-			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
-			JButton btnArrivee = new JButton("Arrivée");
-			JButton btnAbandon = new JButton("Abandon");
-			JLabel espaceG = new JLabel();
-			JLabel espaceD = new JLabel();
-			espaceD.setPreferredSize(new Dimension(35, 20));
-			espaceG.setPreferredSize(new Dimension(35, 20));
-			btnArrivee.addActionListener(new ActionListener() {
-				/**
-				 * Description : Action perform of JButton for the member of the race
-				 * @author Thomas DURST
-				 */
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JLabel tempsJLabel = new JLabel();
-					tempsJLabel.setPreferredSize(new Dimension(177, 20));
-					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
-					tempsJLabel.setForeground(new Color(0, 128, 0));
-					btnAbandon.setEnabled(false);
-					btnArrivee.setEnabled(false);
-					b.remove(btnAbandon);
-					b.remove(btnArrivee);
-					b.add(tempsJLabel);
-					tempsJLabel.setText(recupTemps());
-					b.revalidate();
-					arrive--;
-				}
-			});
-			btnAbandon.addActionListener(new ActionListener() {
-				/**
-				 * Description : Action perform of JButton for the member of the race
-				 * @author Thomas DURST
-				 */
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JLabel tempsJLabel = new JLabel();
-					tempsJLabel.setPreferredSize(new Dimension(177, 20));
-					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
-					tempsJLabel.setForeground(Color.RED);
-					btnAbandon.setEnabled(false);
-					btnArrivee.setEnabled(false);
-					b.remove(btnAbandon);
-					b.remove(btnArrivee);
-					b.add(tempsJLabel);
-					tempsJLabel.setText("00 : 00 : 00");
-					b.revalidate();
-					btnAbandon.setEnabled(false);
-					btnArrivee.setEnabled(false);
-					arrive--;
-				}
-			});
-			
-			b.add(espaceG);
-			b.add(lblNom);
-			b.add(btnArrivee);
-			b.add(btnAbandon);
-			b.add(espaceD);
-			panReg.add(b);
-		}
+
+		btnBoucle();
 		
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
@@ -169,7 +110,6 @@ public class FenChrono extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 	}
-	
 	
 	/**
 	 * Description : Action of the button Start, Stop and Reset
@@ -194,6 +134,9 @@ public class FenChrono extends JFrame implements ActionListener{
 		        lblMin.setText("00");
 		        lblh.setText("00");
 		        lblSec.setText("00");
+		        btnClassement.setVisible(false);
+		        btnBoucle();
+		        this.revalidate();
 			}
 		}
 	}
@@ -264,6 +207,96 @@ public class FenChrono extends JFrame implements ActionListener{
             hS = Integer.toString(h);
         }
 		return hS + " : " + minS + " : " + secS;
+	}
+	
+	public void btnBoucle() {
+		panReg.removeAll();
+		for(int i = 1; i <= 20; i++) {
+			JPanel b = new JPanel();
+			JButton btnundo = new JButton(icone);
+			b.setBackground(new Color(207, 235, 255));
+			JLabel lblNom = new JLabel("Voilier DE FRED");
+			lblNom.setPreferredSize(new Dimension(250, 35));
+			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
+			JButton btnArrivee = new JButton("Arrivée");
+			JButton btnAbandon = new JButton("Abandon");
+			JLabel espaceG = new JLabel();
+			JLabel espaceD = new JLabel();
+			JLabel tempsJLabel = new JLabel();
+			espaceD.setPreferredSize(new Dimension(35, 20));
+			espaceG.setPreferredSize(new Dimension(35, 20));
+			btnArrivee.addActionListener(new ActionListener() {
+				/**
+				 * Description : Action perform of JButton for the member of the race
+				 * @author Thomas DURST
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					btnundo.setPreferredSize(new Dimension(20, 20));
+					tempsJLabel.setPreferredSize(new Dimension(170, 20));
+					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+					tempsJLabel.setForeground(new Color(0, 128, 0));
+					b.remove(btnAbandon);
+					b.remove(btnArrivee);
+					b.remove(espaceD);
+					b.add(btnundo);
+					b.add(tempsJLabel);
+					b.add(espaceD);
+					tempsJLabel.setText(recupTemps());
+					b.revalidate();
+					arrive--;
+				}
+			});
+			btnAbandon.addActionListener(new ActionListener() {
+				/**
+				 * Description : Action perform of JButton for the member of the race
+				 * @author Thomas DURST
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					btnundo.setPreferredSize(new Dimension(20, 20));
+					tempsJLabel.setPreferredSize(new Dimension(170, 20));
+					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+					tempsJLabel.setForeground(Color.RED);
+					b.remove(btnAbandon);
+					b.remove(btnArrivee);
+					b.remove(espaceD);
+					b.add(btnundo);
+					b.add(tempsJLabel);
+					b.add(espaceD);
+					tempsJLabel.setText("00 : 00 : 00");
+					b.revalidate();
+					arrive--;
+				}
+			});
+			btnundo.addActionListener(new ActionListener() {
+				/**
+				 * Description : Action perform of JButton for the member of the race
+				 * @author Thomas DURST
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					b.remove(btnundo);
+					b.remove(tempsJLabel);
+					b.remove(espaceD);
+					b.add(btnArrivee);
+					b.add(btnAbandon);
+					b.add(espaceD);
+					b.revalidate();
+					arrive++;
+				}
+			});
+			
+			b.add(espaceG);
+			b.add(lblNom);
+			b.add(btnArrivee);
+			b.add(btnAbandon);
+			b.add(espaceD);
+			panReg.add(b);
+		}
 	}
 	
 	public static void main(String[] args) {
