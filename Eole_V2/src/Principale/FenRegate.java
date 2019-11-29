@@ -2,13 +2,12 @@ package Principale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
 public class FenRegate extends JFrame implements ActionListener{
-	
 	
 	private Regate regate; // La regate
 	private Chrono leChrono;
