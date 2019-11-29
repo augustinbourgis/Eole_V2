@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.SystemColor;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class FenInscription extends JFrame implements ActionListener{
 	//----- panel général ----//
@@ -46,7 +48,8 @@ public class FenInscription extends JFrame implements ActionListener{
 	JPanel panelListeParticipants = new JPanel();
 	JLabel titreListe = new JLabel("LISTE DES PARTICIPANTS");
 	JLabel lInfoParticipant = new JLabel("Infos participant : ");
-	JLabel lListeInfoParticipant = new JLabel();
+	JLabel lListeInfoParticipant = new JLabel("222222222222222222222222222222222222222222"
+			+ "\n"+"22222222222222");
 	JButton btnSupprimer = new JButton("Supprimer");
 	
 	
@@ -59,10 +62,8 @@ public class FenInscription extends JFrame implements ActionListener{
 		
 		btnAjouterListe.setBackground(new Color(0,74,124));
 		btnDemarrerRegate.setBackground(new Color(0,74,124));
-		btnSupprimer.setBackground(new Color(0,85,142));
 		btnAjouterListe.setForeground(new Color(252,252,252));
 		btnDemarrerRegate.setForeground(new Color(252,252,252));
-		btnSupprimer.setForeground(new Color(252,252,252));
 		panelGauche.setBackground(new Color(207	,235,255));
 		panelListeParticipants.setBackground(new Color(207,235,255));
 		titreListe.setForeground(new Color(0,118,197));
@@ -82,7 +83,7 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.setLayout(new GridLayout(13,2));
 
 		panelGauche.add(titreParcours);
-		panelGauche .add(new JLabel(""));
+		panelGauche.add(new JLabel(""));
 		panelGauche.add(lNumero);
 		panelGauche.add(txtNumero);
 		panelGauche.add(lDistance);
@@ -116,28 +117,45 @@ public class FenInscription extends JFrame implements ActionListener{
 		
 		panelGauche.add(btnDemarrerRegate);
 		btnDemarrerRegate.addActionListener(this);
+		btnSupprimer.setBackground(new Color(0,85,142));
+		btnSupprimer.setForeground(new Color(252,252,252));
 		
-		
-	
-	
-		
-		
-		// ----panel liste ----//
-	
-		panelListeParticipants.add(titreListe);
-		panelListeParticipants.add(btnSupprimer);
 		btnSupprimer.addActionListener(this);
-		panelListeParticipants.add(lInfoParticipant);
-		panelListeParticipants.add(lListeInfoParticipant);
-	
+		GroupLayout gl_panelListeParticipants = new GroupLayout(panelListeParticipants);
+		gl_panelListeParticipants.setHorizontalGroup(
+			gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelListeParticipants.createSequentialGroup()
+					.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelListeParticipants.createSequentialGroup()
+							.addGap(164)
+							.addComponent(titreListe)
+							.addGap(108)
+							.addComponent(btnSupprimer))
+						.addGroup(gl_panelListeParticipants.createSequentialGroup()
+							.addGap(42)
+							.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
+								.addComponent(lListeInfoParticipant)
+								.addComponent(lInfoParticipant))))
+					.addGap(70))
+		);
+		gl_panelListeParticipants.setVerticalGroup(
+			gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelListeParticipants.createSequentialGroup()
+					.addGap(26)
+					.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.BASELINE)
+						.addComponent(titreListe)
+						.addComponent(btnSupprimer))
+					.addGap(41)
+					.addComponent(lInfoParticipant)
+					.addGap(43)
+					.addComponent(lListeInfoParticipant)
+					.addGap(286))
+		);
+		panelListeParticipants.setLayout(gl_panelListeParticipants);
+		
 	
 	
 		this.getContentPane().add(panelGen,"Center");
-		
-
-
-		
-		
 
 		
 	}
