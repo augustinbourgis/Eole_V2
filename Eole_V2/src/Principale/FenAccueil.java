@@ -1,15 +1,20 @@
 package Principale;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.JPanel;
+
+/*
+ * Description : accueil
+ * @author : Alice CHEREL Laura SCHAEFER
+ * @version 1.0
+ */
 
 public class FenAccueil extends JFrame{
 	
 	public FenAccueil() {
-		this.setTitle("Rï¿½gate Eole");
+		this.setTitle("Régate Eole");
 		getContentPane().setLayout(null);
 		//dimensions de la fenetre
 		this.setBounds(0,0, 900, 480);
@@ -22,8 +27,8 @@ public class FenAccueil extends JFrame{
 		JPanel Fen = new JPanel();
 		Fen.setPreferredSize(new Dimension(100,20));
 		
-		//Bouton Nouvelle rï¿½gate
-		JButton btnNouvelleRgate = new JButton("Nouvelle Rï¿½gate");
+		//Bouton Nouvelle regate
+		JButton btnNouvelleRgate = new JButton("Nouvelle Régate");
 		btnNouvelleRgate.setBounds(347, 334, 165, 60);
 		getContentPane().add(btnNouvelleRgate);
 		btnNouvelleRgate.addActionListener(new ActionListener() {

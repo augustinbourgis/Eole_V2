@@ -107,7 +107,7 @@ public class FenChrono extends JFrame implements ActionListener{
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					JLabel tempsJLabel = new JLabel();
-					tempsJLabel.setPreferredSize(new Dimension(194, 20));
+					tempsJLabel.setPreferredSize(new Dimension(177, 20));
 					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
 					tempsJLabel.setForeground(new Color(0, 128, 0));
 					btnAbandon.setEnabled(false);
@@ -129,7 +129,7 @@ public class FenChrono extends JFrame implements ActionListener{
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					JLabel tempsJLabel = new JLabel();
-					tempsJLabel.setPreferredSize(new Dimension(194, 20));
+					tempsJLabel.setPreferredSize(new Dimension(177, 20));
 					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
 					tempsJLabel.setForeground(Color.RED);
 					btnAbandon.setEnabled(false);
