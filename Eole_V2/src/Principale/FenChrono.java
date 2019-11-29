@@ -49,10 +49,16 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * @see recupTemps()
 	 */
 	public FenChrono() {
+		getContentPane().setBackground(new Color(173, 216, 230));		
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
+		
 		JPanel panGen = new JPanel(new BorderLayout());
+		panGen.setBackground(new Color(175, 238, 238));
+		panGen.setBounds(0, 0, 1084, 692);
 		JPanel panReg = new JPanel();
+		panReg.setBackground(new Color(173, 216, 230));
+	
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblMin.setText("00");
@@ -63,10 +69,16 @@ public class FenChrono extends JFrame implements ActionListener{
 		lbl1.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lbl2.setText(":");
 		lbl2.setFont(new Font("Lucida Grande", Font.BOLD, 40));
+		
+		
 		JPanel pan1Chrono = new JPanel(new GridLayout(2, 1));
+		pan1Chrono.setBackground(new Color(175, 238, 238));
 		JPanel pan2Chrono = new JPanel();
+		pan2Chrono.setBackground(new Color(173, 216, 230));
 		JPanel pan3Chrono = new JPanel();
+		pan3Chrono.setBackground(new Color(173, 216, 230));
 		JPanel Chrono = new JPanel();
+		Chrono.setBackground(new Color(173, 216, 230));
 		btnStart.setPreferredSize(new Dimension(100, 35));
 		btnStop.setPreferredSize(new Dimension(100, 35));
 		btnReset.setPreferredSize(new Dimension(100, 35));
@@ -83,12 +95,12 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan1Chrono.add(pan2Chrono);
 		pan1Chrono.add(pan3Chrono);
 		
-		pan1Chrono.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		Chrono.add(pan1Chrono);
 		panGen.add(Chrono, BorderLayout.NORTH);
 		
 		for(int i = 1; i <= 20; i++) {
 			JPanel b = new JPanel();
+			b.setBackground(new Color(173, 216, 230));
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
@@ -156,6 +168,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
+		getContentPane().setLayout(null);
 		panGen.add(panReg);
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
