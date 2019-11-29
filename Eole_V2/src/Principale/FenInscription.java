@@ -1,14 +1,8 @@
 package Principale;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-import java.awt.SystemColor;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -83,7 +77,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.setLayout(null);
 
 		panelGauche.add(titreParcours);
-<<<<<<< HEAD
 		JLabel label = new JLabel("");
 		label.setBounds(271, 0, 271, 34);
 		panelGauche .add(label);
