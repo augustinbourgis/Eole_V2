@@ -52,7 +52,10 @@ public class FenChrono extends JFrame implements ActionListener{
 		setPreferredSize(new Dimension(1100, 730));
 		JPanel panGen = new JPanel(new BorderLayout());
 		JPanel panReg = new JPanel();
-		panReg.setBackground(new Color(175, 238, 238));
+		JPanel panSouth = new JPanel();
+		JButton btnClassement = new JButton("Classement");
+		panSouth.add(btnClassement);
+		panReg.setBackground(new Color(207, 235, 255));
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblMin.setText("00");
@@ -65,11 +68,11 @@ public class FenChrono extends JFrame implements ActionListener{
 		lbl2.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		JPanel pan1Chrono = new JPanel(new GridLayout(2, 1));
 		JPanel pan2Chrono = new JPanel();
-		pan2Chrono.setBackground(new Color(175, 238, 238));
+		pan2Chrono.setBackground(new Color(207, 235, 255));
 		JPanel pan3Chrono = new JPanel();
-		pan3Chrono.setBackground(new Color(175, 238, 238));
+		pan3Chrono.setBackground(new Color(207, 235, 255));
 		JPanel Chrono = new JPanel();
-		Chrono.setBackground(new Color(175, 238, 238));
+		Chrono.setBackground(new Color(207, 235, 255));
 		btnStart.setPreferredSize(new Dimension(100, 35));
 		btnStop.setPreferredSize(new Dimension(100, 35));
 		btnReset.setPreferredSize(new Dimension(100, 35));
@@ -91,7 +94,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		
 		for(int i = 1; i <= 20; i++) {
 			JPanel b = new JPanel();
-			b.setBackground(new Color(175, 238, 238));
+			b.setBackground(new Color(207, 235, 255));
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
@@ -160,6 +163,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
 		panGen.add(panReg);
+		panGen.add(panSouth, BorderLayout.SOUTH);
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
@@ -263,5 +267,4 @@ public class FenChrono extends JFrame implements ActionListener{
 		FenChrono f77 = new FenChrono();
 		f77.setVisible(true);
 	}
-
 }
