@@ -1,9 +1,17 @@
 package Principale;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * Description : Windows of the race
+ * @author : Thomas DURST
+ * @version : 2.0
+ * @see Class Regate
+ */
 
 public class FenChrono extends JFrame implements ActionListener{
 
@@ -12,16 +20,17 @@ public class FenChrono extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	/*
-	 * Variable
+	/**
+	 * Variable of the timer
+	 * @see Check()
 	 */
 	public Timer t = new Timer(10, new Check());
+	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
-	public int ms = 0;
-	public Regate regate;
+	public int arrive = 20;
 	
-	/*
+	/**
 	 * JFrame global element
 	 */
 	JButton btnStart = new JButton("Start");
@@ -29,21 +38,27 @@ public class FenChrono extends JFrame implements ActionListener{
 	JButton btnReset = new JButton("Reset");
 	JLabel lblMin = new JLabel();
 	JLabel lblSec = new JLabel();
-	JLabel lblMs = new JLabel();
+	JLabel lblh = new JLabel();
 	JLabel lbl1 = new JLabel();
 	JLabel lbl2 = new JLabel();
 	
+	
+	/**
+	 * Description : Fen Chrono Initialisation composant
+	 * @author Thomas DURST
+	 * @see recupTemps()
+	 */
 	public FenChrono() {
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
 		JPanel panGen = new JPanel(new BorderLayout());
 		JPanel panReg = new JPanel();
+		lblh.setText("00");
+		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblMin.setText("00");
 		lblMin.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblSec.setText("00");
 		lblSec.setFont(new Font("Lucida Grande", Font.BOLD, 40));
-		lblMs.setText("00");
-		lblMs.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lbl1.setText(":");
 		lbl1.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lbl2.setText(":");
@@ -55,12 +70,12 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStart.setPreferredSize(new Dimension(100, 35));
 		btnStop.setPreferredSize(new Dimension(100, 35));
 		btnReset.setPreferredSize(new Dimension(100, 35));
+		pan2Chrono.add(lblh);
+		pan2Chrono.add(lbl2);
 		pan2Chrono.add(lblMin);
 		pan2Chrono.add(lbl1);
 		pan2Chrono.add(lblSec);
-		pan2Chrono.add(lbl2);
-		pan2Chrono.add(lblMs);
-		
+
 		pan3Chrono.add(btnStart);
 		pan3Chrono.add(btnStop);
 		pan3Chrono.add(btnReset);
@@ -83,8 +98,52 @@ public class FenChrono extends JFrame implements ActionListener{
 			JLabel espaceD = new JLabel();
 			espaceD.setPreferredSize(new Dimension(35, 20));
 			espaceG.setPreferredSize(new Dimension(35, 20));
-			btnArrivee.addActionListener(this);
-			btnAbandon.addActionListener(this);
+			btnArrivee.addActionListener(new ActionListener() {
+				/**
+				 * Description : Action perform of JButton for the member of the race
+				 * @author Thomas DURST
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JLabel tempsJLabel = new JLabel();
+					tempsJLabel.setPreferredSize(new Dimension(194, 20));
+					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+					tempsJLabel.setForeground(new Color(0, 128, 0));
+					btnAbandon.setEnabled(false);
+					btnArrivee.setEnabled(false);
+					b.remove(btnAbandon);
+					b.remove(btnArrivee);
+					b.add(tempsJLabel);
+					tempsJLabel.setText(recupTemps());
+					b.revalidate();
+					arrive--;
+				}
+			});
+			btnAbandon.addActionListener(new ActionListener() {
+				/**
+				 * Description : Action perform of JButton for the member of the race
+				 * @author Thomas DURST
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JLabel tempsJLabel = new JLabel();
+					tempsJLabel.setPreferredSize(new Dimension(194, 20));
+					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+					tempsJLabel.setForeground(Color.RED);
+					btnAbandon.setEnabled(false);
+					btnArrivee.setEnabled(false);
+					b.remove(btnAbandon);
+					b.remove(btnArrivee);
+					b.add(tempsJLabel);
+					tempsJLabel.setText("00 : 00 : 00");
+					b.revalidate();
+					btnAbandon.setEnabled(false);
+					btnArrivee.setEnabled(false);
+					arrive--;
+				}
+			});
 			
 			b.add(espaceG);
 			b.add(lblNom);
@@ -103,6 +162,11 @@ public class FenChrono extends JFrame implements ActionListener{
 		pack();
 	}
 	
+	
+	/**
+	 * Description : Action of the button Start, Stop and Reset
+	 * @author Thomas DURST
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -118,32 +182,31 @@ public class FenChrono extends JFrame implements ActionListener{
 				t.stop();
 				min = 0;
 		        sec = 0;
-		        ms = 0;
+		        h = 0;
 		        lblMin.setText("00");
-		        lblMs.setText("00");
+		        lblh.setText("00");
 		        lblSec.setText("00");
 			}
 		}
 	}
 	
+	/**
+	 * Description : Class for the time to add a sec on the windows label
+	 * @author Thomas DURST
+	 */
 	class Check implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			ms += 1;
-            if (ms == 100) {
-                sec += 1;
-                ms = 0;
-            }
+			sec += 1;
             if (sec == 60) {
                 min += 1;
                 sec = 0;
             }
-            if (ms < 10) {
-                lblMs.setText("0" + ms);
-            } else {
-                lblMs.setText(String.valueOf(ms));
+            if (min == 60) {
+                h += 1;
+                min = 0;
             }
             if (sec < 10) {
                 lblSec.setText("0" + sec);
@@ -155,7 +218,42 @@ public class FenChrono extends JFrame implements ActionListener{
             } else {
                 lblMin.setText(String.valueOf(min));
             }
+            if (h < 10) {
+                lblh.setText("0" + h);
+            } else {
+                lblh.setText(String.valueOf(h));
+            }
+            if(arrive == 0) {
+    			t.stop();
+    		}
 		}
+	}
+	
+	/**
+	 * Description : return the time of the time for show on the label in the window
+	 * @author Thomas DURST
+	 * @return String
+	 */
+	public String recupTemps() {
+		String minS = "";
+		String secS = "";
+		String hS = "";
+        if (sec < 10) {
+            secS = "0" + sec;
+        } else {
+            secS = Integer.toString(sec);
+        }
+        if (min < 10) {
+            minS = "0" + min;
+        } else {
+            minS = Integer.toString(min);
+        }
+        if (h < 10) {
+            hS = "0" + h;
+        } else {
+            hS = Integer.toString(h);
+        }
+		return hS + " : " + minS + " : " + secS;
 	}
 	
 	public static void main(String[] args) {
