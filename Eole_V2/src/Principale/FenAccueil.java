@@ -35,14 +35,10 @@ public class FenAccueil extends JFrame{
 		
 		JPanel Fen = new JPanel();
 		Fen.setPreferredSize(new Dimension(100,20));
-		
-<<<<<<< HEAD
+
 		//Bouton Nouvelle rï¿½gate
 		JButton btnNouvelleRgate = new JButton("Nouvelle Régate");
-=======
-		//Bouton Nouvelle regate
-		JButton btnNouvelleRgate = new JButton("Nouvelle Rï¿½gate");
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
+
 		btnNouvelleRgate.setBounds(347, 334, 165, 60);
 		getContentPane().add(btnNouvelleRgate);
 		btnNouvelleRgate.addActionListener(new ActionListener() {
