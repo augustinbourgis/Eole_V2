@@ -24,7 +24,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * Variable of the timer
 	 * @see Check()
 	 */
-	public Timer t = new Timer(1000, new Check());
+	public Timer t = new Timer(10, new Check());
 	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
@@ -41,6 +41,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * JFrame global element
 	 */
 	JPanel panReg = new JPanel();
+	JPanel pan3Chrono = new JPanel();
 	JButton btnStart = new JButton("Start");
 	JButton btnStop = new JButton("Stop");
 	JButton btnReset = new JButton("Reset");
@@ -65,7 +66,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		setPreferredSize(new Dimension((int)dimension.getWidth(), (int)dimension.getHeight()));
 		setResizable(false);
 		JPanel panGen = new JPanel(new BorderLayout());
-		btnClassement.setPreferredSize(new Dimension(200, 50));
+		btnClassement.setPreferredSize(new Dimension(200, 35));
 		panReg.setBackground(new Color(207, 235, 255));
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
@@ -80,7 +81,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		JPanel pan1Chrono = new JPanel(new GridLayout(2, 1));
 		JPanel pan2Chrono = new JPanel();
 		pan2Chrono.setBackground(new Color(207, 235, 255));
-		JPanel pan3Chrono = new JPanel();
+		
 		pan3Chrono.setBackground(new Color(207, 235, 255));
 		JPanel Chrono = new JPanel();
 		Chrono.setBackground(new Color(207, 235, 255));
@@ -102,14 +103,10 @@ public class FenChrono extends JFrame implements ActionListener{
 		
 		Chrono.add(pan1Chrono);
 		panGen.add(Chrono, BorderLayout.NORTH);
-
 		btnBoucle();
-		
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
-		btnClassement.setVisible(false);
-		panReg.add(btnClassement);
 		panGen.add(panReg);
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -130,7 +127,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			t.stop();
 		}
 		if(e.getSource() == btnReset) {
-			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redémarer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redï¿½marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
 			if(n != 1) {
 				t.stop();
 				min = 0;
@@ -139,7 +136,10 @@ public class FenChrono extends JFrame implements ActionListener{
 		        lblMin.setText("00");
 		        lblh.setText("00");
 		        lblSec.setText("00");
-		        btnClassement.setVisible(false);
+		        pan3Chrono.removeAll();
+		        pan3Chrono.add(btnStart);
+		        pan3Chrono.add(btnStop);
+		        pan3Chrono.add(btnReset);
 		        arrive = 2;
 		        btnBoucle();
 		        this.revalidate();
@@ -181,8 +181,9 @@ public class FenChrono extends JFrame implements ActionListener{
                 lblh.setText(String.valueOf(h));
             }
             if(arrive == 0) {
-            	btnClassement.setVisible(true);
-    			t.stop();	
+            	btnClassAffichage();
+    			t.stop();
+    			btnClassement.setEnabled(true);
     		}
 		}
 	}
@@ -223,7 +224,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
-			JButton btnArrivee = new JButton("Arrivée");
+			JButton btnArrivee = new JButton("Arrivï¿½e");
 			JButton btnAbandon = new JButton("Abandon");
 			JLabel espaceG = new JLabel();
 			JLabel espaceD = new JLabel();
@@ -251,7 +252,6 @@ public class FenChrono extends JFrame implements ActionListener{
 					tempsJLabel.setText(recupTemps());
 					b.revalidate();
 					arrive--;
-					System.out.println(arrive);
 				}
 			});
 			btnAbandon.addActionListener(new ActionListener() {
@@ -275,7 +275,6 @@ public class FenChrono extends JFrame implements ActionListener{
 					tempsJLabel.setText("00 : 00 : 00");
 					b.revalidate();
 					arrive--;
-					System.out.println(arrive);
 				}
 			});
 			btnundo.addActionListener(new ActionListener() {
@@ -304,6 +303,13 @@ public class FenChrono extends JFrame implements ActionListener{
 			b.add(espaceD);
 			panReg.add(b);
 		}
+	}
+	
+	public void btnClassAffichage() {
+		pan3Chrono.removeAll();
+		pan3Chrono.add(btnClassement);
+		pan3Chrono.add(btnReset);
+		this.revalidate();
 	}
 	
 	public static void main(String[] args) {
