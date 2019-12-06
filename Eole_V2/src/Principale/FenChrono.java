@@ -25,6 +25,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Variable of the class regate
 	 */
+	
 	String nom;
 	int distance;
 	ArrayList<Voilier> lesParticipant;
@@ -125,6 +126,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
+		btnClassement.addActionListener(this);
 		panGen.add(panReg);
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -162,6 +164,12 @@ public class FenChrono extends JFrame implements ActionListener{
 		        btnBoucle();
 		        this.revalidate();
 			}
+		}
+		if(e.getSource() == btnClassement) {
+			FenChoixClassement Fcc = new FenChoixClassement(laRegate);
+			Fcc.setVisible(true);
+			this.setVisible(false);
+			this.dispose();
 		}
 	}
 	

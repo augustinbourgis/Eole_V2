@@ -8,10 +8,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class FenInscription extends JFrame implements ActionListener {
-	
-	// ----- panel gï¿½nï¿½ral ----//
+
+	// ----- panel général ----//
 	JPanel panelGen = new JPanel();
-	JButton btnDemarrerRegate = new JButton("Dï¿½marrer la rï¿½gate");
+	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
 
 	// ---- panel parcours sur la gauche en haut-----//
 	JPanel panelGauche = new JPanel();
@@ -19,7 +19,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Numï¿½ro : ");
+	JLabel lNumero = new JLabel("Numéro : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 
 	// ---- panel participant sur la gauche en bas ---//
@@ -36,18 +36,17 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel lClasse = new JLabel("Classe : ");
 	JLabel lRating = new JLabel("Rating : ");
 	JLabel lNomSkipper = new JLabel("Nom du skipper : ");
-	JButton btnAjouterListe = new JButton("Ajouter ï¿½ la liste");
+	JButton btnAjouterListe = new JButton("Ajouter à la liste");
 
 	// ---- panel liste participant sur la droite---//
 
 	JPanel panelListeParticipants = new JPanel();
-	JLabel titreListe = new JLabel("LISTE DES PARTICIPANTS");
-	JLabel lInfoParticipant = new JLabel("Infos participant : ");
-	JTextField lListeInfoParticipant = new JTextField();
-	JButton btnSupprimer = new JButton("Supprimer");
+	public JLabel lblListeDesParticipants = new JLabel("LISTE DES PARTICIPANTS");
+
 
 	public FenInscription() {
-		this.setTitle("Fenï¿½tre Inscription");
+
+		this.setTitle("Fenêtre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
@@ -62,8 +61,6 @@ public class FenInscription extends JFrame implements ActionListener {
 		
 		panelGauche.setBackground(new Color(207, 235, 255));
 		panelListeParticipants.setBackground(new Color(207, 235, 255));
-		
-		titreListe.setForeground(new Color(0, 118, 197));
 		titreParcours.setHorizontalAlignment(SwingConstants.CENTER);
 		titreParcours.setBounds(133, 23, 271, 34);
 		titreParcours.setForeground(new Color(0, 118, 197));
@@ -141,50 +138,41 @@ public class FenInscription extends JFrame implements ActionListener {
 		
 		panelGauche.add(btnDemarrerRegate);
 		btnDemarrerRegate.addActionListener(this);
+		panelListeParticipants.setLayout(null);
+		lblListeDesParticipants.setBounds(177, 22, 196, 13);
+		lblListeDesParticipants.setForeground(new Color(0, 118, 197));
+		
+		panelListeParticipants.add(lblListeDesParticipants);
+		
+		JButton btnSupprimer = new JButton("Supprimer");
 		btnSupprimer.setBackground(new Color(0, 85, 142));
-		btnSupprimer.setForeground(new Color(252, 252, 252));
+		btnSupprimer.setForeground(new Color (252, 252, 252));
+		btnSupprimer.setBounds(395, 18, 105, 21);
+		panelListeParticipants.add(btnSupprimer);
+		
+		JLabel lblInfosParticipant = new JLabel("Infos participant :");
+		lblInfosParticipant.setBounds(33, 78, 122, 13);
+		panelListeParticipants.add(lblInfosParticipant);
+	
 
-		btnSupprimer.addActionListener(this);
-		GroupLayout gl_panelListeParticipants = new GroupLayout(panelListeParticipants);
-		gl_panelListeParticipants.setHorizontalGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelListeParticipants.createSequentialGroup()
-						.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelListeParticipants.createSequentialGroup().addGap(164)
-										.addComponent(titreListe).addGap(108).addComponent(btnSupprimer))
-								.addGroup(gl_panelListeParticipants.createSequentialGroup().addGap(42)
-										.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
-												.addComponent(lListeInfoParticipant).addComponent(lInfoParticipant))))
-						.addGap(70)));
-		gl_panelListeParticipants.setVerticalGroup(gl_panelListeParticipants.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelListeParticipants.createSequentialGroup().addGap(26)
-						.addGroup(gl_panelListeParticipants.createParallelGroup(Alignment.BASELINE)
-								.addComponent(titreListe).addComponent(btnSupprimer))
-						.addGap(41).addComponent(lInfoParticipant).addGap(43).addComponent(lListeInfoParticipant)
-						.addGap(286)));
-		panelListeParticipants.setLayout(gl_panelListeParticipants);
 
 		this.getContentPane().add(panelGen, "Center");
 
 	}
 
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 		if(e.getSource()==btnAjouterListe) {
-			String res = txtNumeroVoilier.getText()+","+txtNomVoilier.getText()+" classe : "+txtClasse.getText()+", Rating : "+txtRating.getText()+" skipper : "+txtNomSkipper.getText();
-			panelListeParticipants.add(new JLabel());
-			lListeInfoParticipant.setText(lListeInfoParticipant.getText()+"\n"+res);
-=======
-		if(e.getSource() == btnDemarrerRegate) {
-			FenChrono f1 = new FenChrono();
-			this.setVisible(false);
-			this.dispose();
-			f1.setVisible(true);
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
+			
+		}else if(e.getSource()==btnDemarrerRegate) {
+			
+			
+		
+			
 		}
 	}
 
 	public static void main(String[] args) {
-		FenInscription f = new FenInscription();
-		f.setVisible(true);
+		FenInscription fi = new FenInscription();
+		fi.setVisible(true);
 	}
 }
