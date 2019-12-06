@@ -17,10 +17,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private static final String COLONNE2 = "Voilier";
 	private static final String COLONNE3 = "Nom skipper";
 	private static final String COLONNE4 = "Ratting";
-	private static final String COLONNE5 = "Tps réel";
-	private static final String COLONNE6 = "Tps composé";
+	private static final String COLONNE5 = "Tps rï¿½el";
+	private static final String COLONNE6 = "Tps composï¿½";
 	private static final String COLONNE7 = "Class. classe";
-	private static final String COLONNE8 = "Class. Général";
+	private static final String COLONNE8 = "Class. Gï¿½nï¿½ral";
 	
 	private ArrayList<Voilier> classe1 = new ArrayList<Voilier>(); //ArrayList de la classe 1
 	private ArrayList<Voilier> classe2 = new ArrayList<Voilier>();	//ArrayList de la classe 2
@@ -41,9 +41,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JPanel panelGeneral = new JPanel();
 	private JPanel panelBoutons = new JPanel();
 	private JPanel panelClassement = new JPanel();
-	private JButton btnClassement1 = new JButton("Obtenir palmarès classe 1");
-	private JButton btnClassement2 = new JButton("Obtenir palmarès classe 2");
-	private JButton btnClassementTotal = new JButton("Obtenir palmarès général");
+	private JButton btnClassement1 = new JButton("Obtenir palmarï¿½s classe 1");
+	private JButton btnClassement2 = new JButton("Obtenir palmarï¿½s classe 2");
+	private JButton btnClassementTotal = new JButton("Obtenir palmarï¿½s gï¿½nï¿½ral");
 	
 
 //-------------------------- Constructeurs --------------------------//
@@ -85,10 +85,19 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		panelClassement.setBounds(0, 40, 1084, 402);
 		panelClassement.setBackground(new Color(207,235,255));
 		panelGeneral.add(panelBoutons);
+
+		panelClassement.setBounds(0, 40, 1084, 402);
+
+		panelClassement.setBackground(new Color(207,235,255));
+
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.setLayout(null);
+		panelGeneral.add(panelBoutons);
 		panelClassement.setBounds(0, 40, 1084, 402);
 		panelClassement.setBackground(new Color(207,235,255));
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelGeneral.setLayout(null);
+		panelGeneral.add(panelBoutons);
 		panelGeneral.add(panelBoutons);
 		panelGeneral.add(panelBoutons);
 		panelGeneral.add(panelClassement);
@@ -100,7 +109,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de connaitre le nombre de voilier à afficher par classement
+	 * Permet de connaitre le nombre de voilier ï¿½ afficher par classement
 	 */
 	public void updateNbCases() {
 		switch(choix) {
@@ -136,7 +145,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de créer les entetes des colonnes du classement
+	 * Permet de crï¿½er les entetes des colonnes du classement
 	 */
 	public void enteteClassement() {
 		switch(choix) {
@@ -208,7 +217,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * @param v
 	 * le voilier
 	 * @return
-	 * la place dans le classement géneral
+	 * la place dans le classement gï¿½neral
 	 */
 	public int getPlaceGeneral(Voilier v) {
 		int place=0;
