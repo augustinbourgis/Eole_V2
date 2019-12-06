@@ -2,13 +2,15 @@ package Principale;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class FenInscription extends JFrame implements ActionListener {
 
+	private ArrayList<Voilier> lesVoiliersInscrits = new ArrayList<Voilier>();
+	
 	// ----- panel général ----//
 	JPanel panelGen = new JPanel();
 	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
@@ -162,6 +164,9 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterListe) {
+			lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
+			JLabel l = new JLabel();
+			l.setText(txtNomVoilier.getText());
 			
 		}else if(e.getSource()==btnDemarrerRegate) {
 			
