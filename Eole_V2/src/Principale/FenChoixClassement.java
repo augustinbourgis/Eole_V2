@@ -56,6 +56,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * L'ArrayList avec toutes les classes
 	 */
 	public FenChoixClassement(Regate r) {
+		setResizable(false);
 		this.r=r;
 		this.classe1=r.classementClasse1;
 		this.classe2=r.classementClasse2;
@@ -65,12 +66,21 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		btnClassement1.addActionListener(this);
+		btnClassement1.setBackground(new Color(0,74,124));
+		btnClassement1.setForeground(new Color(252,252,252));
 		btnClassement2.addActionListener(this);
+		btnClassement2.setBackground(new Color(0,74,124));
+		btnClassement2.setForeground(new Color(252,252,252));
 		btnClassementTotal.addActionListener(this);
+		btnClassementTotal.setBackground(new Color(0,74,124));
+		btnClassementTotal.setForeground(new Color(252,252,252));
 		panelGeneral.setLayout(null);
+		panelGeneral.setBackground(new Color(207,235,255));
 		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelBoutons.setBackground(new Color(207,235,255));
 		panelGeneral.add(panelBoutons);
 		panelClassement.setBounds(0, 40, 1084, 402);
+		panelClassement.setBackground(new Color(207,235,255));
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
