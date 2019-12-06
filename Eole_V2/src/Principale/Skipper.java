@@ -7,7 +7,6 @@ public class Skipper {
 	
 //-------------------------- Attributs --------------------------//
 	private String nom;
-	private String prenom;
 //-------------------------- Fin attributs --------------------------//
 	
 	
@@ -40,30 +39,7 @@ public class Skipper {
 	}
 
 	
-	
-	/**
-	 * 
-	 * Getter de PRENOM
-	 * @return String
-	 * Le prenom
-	 * @author Augustin et Wizard
-	 */
-	public String getPrenom() {
-		return prenom;
-	}
 
-	
-	
-	/**
-	 * 
-	 * Setter de prenom
-	 * @param prenom
-	 * Le prenom
-	 * @author Augustin et Wizard
-	 */
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
 //-------------------------- Fin Getters/Setters --------------------------//
 	
 	
@@ -75,9 +51,8 @@ public class Skipper {
 	 * @param prenom
 	 * @author Augustin et Wizard
 	 */
-	public Skipper(String nom, String prenom) {
+	public Skipper(String nom) {
 		this.nom = nom;
-		this.prenom = prenom;
 	}
 //-------------------------- Fin Constructeurs --------------------------//
 }

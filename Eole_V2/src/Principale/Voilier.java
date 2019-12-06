@@ -6,7 +6,7 @@ public class Voilier {
 //-------------------------- Attributs --------------------------//
 	private String nom;
 	private int classe;
-	public static int num;
+	public int num;
 	public Skipper skipper;
 	private boolean abandon ;
 	private int rating = 0; //
@@ -185,13 +185,12 @@ public class Voilier {
 	 * @param classe
 	 * @author Augustin et Wizard
 	 */
-	public Voilier(String nomVoilier, int classe) {
+	public Voilier(String nomVoilier, int classe, int num, String nomSkipper) {
 		this.nom = nomVoilier;
 		this.classe = classe;
-		this.num=Voilier.num;
-		Voilier.num++;
+		this.num=num;
 		this.abandon=false;
-		this.skipper=new Skipper("moi", "toi");
+		this.skipper=new Skipper(nomSkipper);
 	}
 //-------------------------- Fin Constructeurs --------------------------//
 	
