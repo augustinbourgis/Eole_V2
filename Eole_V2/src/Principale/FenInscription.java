@@ -9,9 +9,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class FenInscription extends JFrame implements ActionListener {
 	
-	// ----- panel g�n�ral ----//
+	// ----- panel general ----//
 	JPanel panelGen = new JPanel();
-	JButton btnDemarrerRegate = new JButton("D�marrer la r�gate");
+	JButton btnDemarrerRegate = new JButton("Demarrer la regate");
 
 	// ---- panel parcours sur la gauche en haut-----//
 	JPanel panelGauche = new JPanel();
@@ -19,7 +19,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Num�ro : ");
+	JLabel lNumero = new JLabel("Numero : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 
 	// ---- panel participant sur la gauche en bas ---//
@@ -36,7 +36,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel lClasse = new JLabel("Classe : ");
 	JLabel lRating = new JLabel("Rating : ");
 	JLabel lNomSkipper = new JLabel("Nom du skipper : ");
-	JButton btnAjouterListe = new JButton("Ajouter � la liste");
+	JButton btnAjouterListe = new JButton("Ajouter a la liste");
 
 	// ---- panel liste participant sur la droite---//
 
@@ -47,7 +47,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JButton btnSupprimer = new JButton("Supprimer");
 
 	public FenInscription() {
-		this.setTitle("Fen�tre Inscription");
+		this.setTitle("Fenetre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
