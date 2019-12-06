@@ -23,7 +23,7 @@ public class FenInscription extends JFrame implements ActionListener{
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Numero : ");
+	JLabel lNumero = new JLabel("Numéro : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 	
 	// ---- panel participant sur la gauche en bas ---//
@@ -47,7 +47,7 @@ public class FenInscription extends JFrame implements ActionListener{
 	
 	JPanel panelListeParticipants = new JPanel();
 	JLabel titreListe = new JLabel("LISTE DES PARTICIPANTS");
-	JLabel lInfoParticipant = new JLabel("Infos participants : ");
+	JLabel lInfoParticipant = new JLabel("Infos participant : ");
 	JLabel lListeInfoParticipant = new JLabel("222222222222222222222222222222222222222222"
 			+ "\n"+"22222222222222");
 	JButton btnSupprimer = new JButton("Supprimer");
@@ -55,10 +55,11 @@ public class FenInscription extends JFrame implements ActionListener{
 	
 	
 	public FenInscription() {
-		this.setTitle("Fenetre Inscription");
+		this.setTitle("Fenêtre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		
 		btnAjouterListe.setBounds(185, 351, 199, 23);
 		btnAjouterListe.setBackground(new Color(0,74,124));
@@ -83,6 +84,7 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.setLayout(null);
 
 		panelGauche.add(titreParcours);
+
 		JLabel label = new JLabel("");
 		label.setBounds(271, 0, 271, 34);
 		panelGauche .add(label);
@@ -143,7 +145,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		JLabel label_4 = new JLabel("");
 		label_4.setBounds(271, 340, 271, 34);
 		panelGauche .add(label_4);
-		
 		panelGauche.add(btnDemarrerRegate);
 		btnDemarrerRegate.addActionListener(this);
 		btnSupprimer.setBackground(new Color(0,85,142));
