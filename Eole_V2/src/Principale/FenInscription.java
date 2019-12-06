@@ -83,7 +83,7 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.setLayout(null);
 
 		panelGauche.add(titreParcours);
-<<<<<<< HEAD
+
 		JLabel label = new JLabel("");
 		label.setBounds(271, 0, 271, 34);
 		panelGauche .add(label);
@@ -144,7 +144,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		JLabel label_4 = new JLabel("");
 		label_4.setBounds(271, 340, 271, 34);
 		panelGauche .add(label_4);
-		
 		panelGauche.add(btnDemarrerRegate);
 		btnDemarrerRegate.addActionListener(this);
 		btnSupprimer.setBackground(new Color(0,85,142));
