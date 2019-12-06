@@ -59,6 +59,7 @@ public class FenInscription extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		
 		btnAjouterListe.setBounds(185, 351, 199, 23);
 		btnAjouterListe.setBackground(new Color(0,74,124));
