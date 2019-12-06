@@ -1,27 +1,15 @@
 package Principale;
 
-<<<<<<< HEAD
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 import java.util.ArrayList;
-<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-=======
-import javax.imageio.ImageIO;
-import javax.swing.*;
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
