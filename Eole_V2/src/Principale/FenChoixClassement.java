@@ -93,8 +93,13 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelGeneral.setLayout(null);
 		panelGeneral.add(panelBoutons);
+		panelClassement.setBounds(0, 40, 1084, 402);
+		panelClassement.setBackground(new Color(207,235,255));
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.setLayout(null);
 		panelGeneral.add(panelBoutons);
-
+		panelGeneral.add(panelBoutons);
+		panelGeneral.add(panelBoutons);
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
