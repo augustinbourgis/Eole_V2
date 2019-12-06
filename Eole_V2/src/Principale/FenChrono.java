@@ -73,7 +73,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
 		this.nom = nom;
 		this.distance = distance;
+		for(Voilier p : participants) {
+			lesParticipant.add(p);
+		}
 		
+		System.out.println(participants.size());
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -154,7 +158,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		        pan3Chrono.add(btnStart);
 		        pan3Chrono.add(btnStop);
 		        pan3Chrono.add(btnReset);
-		        arrive = 2;
+		        arrive = lesParticipant.size();
 		        btnBoucle();
 		        this.revalidate();
 			}
@@ -327,7 +331,13 @@ public class FenChrono extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		FenChrono f77 = new FenChrono("etst", 14, 2500);
+		ArrayList<Voilier> v = new ArrayList<Voilier>();
+		v.add(new Voilier("FDRR", 1));
+		v.add(new Voilier("FDRdR", 1));
+		v.add(new Voilier("FDRaR", 1));
+		v.add(new Voilier("FDRsR", 1));
+		v.add(new Voilier("FDRgR", 1));
+		FenChrono f77 = new FenChrono("etst", 2500, v);
 		f77.setVisible(true);
 	}
 }
