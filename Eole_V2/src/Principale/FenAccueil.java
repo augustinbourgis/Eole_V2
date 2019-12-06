@@ -13,34 +13,20 @@ import javax.swing.JPanel;
 
 public class FenAccueil extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Description : Initialisation composant JFrame
-	 * @author Laura SCHAEFERT & Alice CHEREL
-	 */
+	
 	public FenAccueil() {
 		this.setTitle("Régate Eole");
-		getContentPane().setLayout(null);
-		//dimensions de la fenetre
-		this.setBounds(0,0, 900, 480);
-		//fenetre au centre
-		this.setLocationRelativeTo(null);
-		//non redimensionable
-		this.setResizable(false);
+		this.setBounds(0,0, 900, 480); //dimensions de la fenetre
+		this.setLocationRelativeTo(null); //fenetre au centre
+		this.setResizable(false);//non redimensionable
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+		getContentPane().setLayout(null);
 		JPanel Fen = new JPanel();
 		Fen.setPreferredSize(new Dimension(100,20));
-
-		//Bouton Nouvelle rï¿½gate
-		JButton btnNouvelleRgate = new JButton("Nouvelle Régate");
-
-		btnNouvelleRgate.setBounds(347, 334, 165, 60);
+		JButton btnNouvelleRgate = new JButton("Nouvelle Régate"); //Bouton Nouvelle regate
 		getContentPane().add(btnNouvelleRgate);
+		btnNouvelleRgate.setBounds(347, 334, 165, 60);
 		btnNouvelleRgate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FenInscription fI = new FenInscription();
@@ -49,15 +35,11 @@ public class FenAccueil extends JFrame{
 				btnNouvelleRgate.setText("Regate en cours...");
 			}
 		});
-		
-		//Logo
-		JLabel lblNewLabel_1 = new JLabel("");
+		JLabel lblNewLabel_1 = new JLabel(""); //JLabel qui sert de Logo
 		lblNewLabel_1.setIcon(new ImageIcon(FenAccueil.class.getResource("/Other/Maquette/petitlogo.PNG")));
 		lblNewLabel_1.setBounds(10, 11, 231, 96);
 		getContentPane().add(lblNewLabel_1);
-		
-		//Image de fond
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("New label"); //JLabel qui sert d'image de fond
 		lblNewLabel.setBounds(-117, 10, 1114, 480);
 		lblNewLabel.setIcon(new ImageIcon(FenAccueil.class.getResource("/Other/Maquette/regate-voiliers.jpg")));
 		getContentPane().add(lblNewLabel);

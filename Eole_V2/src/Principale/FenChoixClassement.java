@@ -1,4 +1,4 @@
-package Principale;
+dpackage Principale;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -70,10 +70,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement1.addActionListener(this);
 		btnClassement2.addActionListener(this);
 		btnClassementTotal.addActionListener(this);
-		panelGeneral.setLayout(null);
-		panelBoutons.setBounds(0, 0, 1084, 41);
-		panelGeneral.add(panelBoutons);
 		panelClassement.setBounds(0, 40, 1084, 402);
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.setLayout(null);
+		panelGeneral.add(panelBoutons);
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
