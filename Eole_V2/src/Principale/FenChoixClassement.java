@@ -1,6 +1,5 @@
 package Principale;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
@@ -20,8 +19,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private static final String COLONNE4 = "Ratting";
 	private static final String COLONNE5 = "Tps réel";
 	private static final String COLONNE6 = "Tps composé";
-	private static final String COLONNE7 = "Clas. classe";
-	private static final String COLONNE8 = "Clas. Général";
+	private static final String COLONNE7 = "Class. classe";
+	private static final String COLONNE8 = "Class. Général";
 	
 	private ArrayList<Voilier> classe1 = new ArrayList<Voilier>(); //ArrayList de la classe 1
 	private ArrayList<Voilier> classe2 = new ArrayList<Voilier>();	//ArrayList de la classe 2
@@ -75,7 +74,6 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement2.setBackground(new Color(0,74,124));
 		btnClassement2.setForeground(new Color(252,252,252));
 		btnClassementTotal.addActionListener(this);
-<<<<<<< HEAD
 		btnClassementTotal.setBackground(new Color(0,74,124));
 		btnClassementTotal.setForeground(new Color(252,252,252));
 		panelGeneral.setLayout(null);
@@ -83,16 +81,11 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelBoutons.setBackground(new Color(207,235,255));
 		panelGeneral.add(panelBoutons);
-=======
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelClassement.setBounds(0, 40, 1084, 402);
-<<<<<<< HEAD
 		panelClassement.setBackground(new Color(207,235,255));
-=======
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelGeneral.setLayout(null);
 		panelGeneral.add(panelBoutons);
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
@@ -143,26 +136,34 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	public void enteteClassement() {
 		switch(choix) {
 		case 1: case 2:
-			lColonne1 = new JLabel(COLONNE1);
-			lColonne2 = new JLabel(COLONNE2);
-			lColonne3 = new JLabel(COLONNE3);
-			lColonne4 = new JLabel(COLONNE4);
-			lColonne5 = new JLabel(COLONNE5);
-			lColonne6 = new JLabel(COLONNE6);
-			lColonne7 = new JLabel(COLONNE7);
-			lColonne8 = new JLabel(COLONNE8);
+			lColonne1 = new JLabel(COLONNE1.toUpperCase());
+			lColonne2 = new JLabel(COLONNE2.toUpperCase());
+			lColonne3 = new JLabel(COLONNE3.toUpperCase());
+			lColonne4 = new JLabel(COLONNE4.toUpperCase());
+			lColonne5 = new JLabel(COLONNE5.toUpperCase());
+			lColonne6 = new JLabel(COLONNE6.toUpperCase());
+			lColonne7 = new JLabel(COLONNE7.toUpperCase());
+			lColonne8 = new JLabel(COLONNE8.toUpperCase());
 			
 			break;
 		case 3:
-			lColonne1 = new JLabel(COLONNE1);
-			lColonne2 = new JLabel(COLONNE2);
-			lColonne3 = new JLabel(COLONNE3);
-			lColonne4 = new JLabel(COLONNE4);
-			lColonne5 = new JLabel(COLONNE5);
-			lColonne6 = new JLabel(COLONNE6);
-			lColonne8 = new JLabel(COLONNE8);
+			lColonne1 = new JLabel(COLONNE1.toUpperCase());
+			lColonne2 = new JLabel(COLONNE2.toUpperCase());
+			lColonne3 = new JLabel(COLONNE3.toUpperCase());
+			lColonne4 = new JLabel(COLONNE4.toUpperCase());
+			lColonne5 = new JLabel(COLONNE5.toUpperCase());
+			lColonne6 = new JLabel(COLONNE6.toUpperCase());
+			lColonne8 = new JLabel(COLONNE8.toUpperCase());
 			break;
 		}
+		lColonne1.setForeground(new Color(0,118,197));
+		lColonne2.setForeground(new Color(0,118,197));
+		lColonne3.setForeground(new Color(0,118,197));
+		lColonne4.setForeground(new Color(0,118,197));
+		lColonne5.setForeground(new Color(0,118,197));
+		lColonne6.setForeground(new Color(0,118,197));
+		lColonne7.setForeground(new Color(0,118,197));
+		lColonne8.setForeground(new Color(0,118,197));
 	}
 	
 	
