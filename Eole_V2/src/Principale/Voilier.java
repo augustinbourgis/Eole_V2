@@ -19,12 +19,18 @@ public class Voilier {
 	
 	
 //-------------------------- Getters/Setters --------------------------//
+	/**
+	 * toString de voilier
+	 * @return ex: Pierre classe 2
+	 * @author Marine
+	 */
+	
 	public String toString() {
 		return nom + "CLASSE : " + classe;
 	}
 	/**
 	 * Getter de NOM
-	 * @return String
+	 * @return nom
 	 * Le nom
 	 * @author Marine
 	 */
@@ -33,7 +39,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER nbr nom
-	 * @return nom
+	 * @param nom
 	 * le nom
 	 * @author Marine
 	 */
@@ -42,7 +48,7 @@ public class Voilier {
 	}
 	/**
 	 * Getter de classe
-	 * @return int
+	 * @return classe
 	 * Le classe
 	 * @author Marine
 	 */
@@ -51,7 +57,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER classe
-	 * @return classe
+	 * @param classe
 	 * la classe
 	 * @author Marine
 	 */
@@ -60,7 +66,7 @@ public class Voilier {
 	}
 	/**
 	 * Getter de rating
-	 * @return int
+	 * @return rating
 	 * Le rating
 	 * @author Marine
 	 */
@@ -69,7 +75,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER rating
-	 * @return rating
+	 * @param rating
 	 * le rating
 	 * @author Marine
 	 */
@@ -78,7 +84,7 @@ public class Voilier {
 	}
 	/**
 	 * Getter de temps reel
-	 * @return int
+	 * @return tempsReel
 	 * Le tempsReel
 	 * @author Marine
 	 */
@@ -87,7 +93,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER tempsReel
-	 * @return tempsReel
+	 * @param tempsReel
 	 * le tempsReel
 	 * @author Marine
 	 */
@@ -96,7 +102,7 @@ public class Voilier {
 	}
 	/**
 	 * Getter de tempsCompense
-	 * @return int
+	 * @return tempsCompense
 	 * Le tempsCompense
 	 * @author Marine
 	 */
@@ -105,7 +111,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER tempsCompense
-	 * @return tempsCompense
+	 * @param tempsCompense
 	 * le tempsCompense
 	 * @author Marine
 	 */
@@ -114,7 +120,7 @@ public class Voilier {
 	}
 	/**
 	 * Getter de tempsHMS
-	 * @return String
+	 * @return tempsHMS
 	 * Le tempsHMS
 	 * @author Marine
 	 */
@@ -124,7 +130,7 @@ public class Voilier {
 	}
 	/**
 	 * SETTER tempsHMS
-	 * @return tempsHMS
+	 * @param tempsHMS
 	 * le tempsHMS
 	 * @author Marine
 	 */
@@ -148,9 +154,21 @@ public class Voilier {
 	public boolean getAbandon() {
 		return abandon;
 	}
+	/**
+	 * Getter de num
+	 * @return num
+	 * @author Marine
+	 */
 	public int getNum() {
 		return this.num;
 	}
+	/** 
+	 * SETTER num
+	 * @param num
+	 * Le num
+	 * @author Marine
+	 */
+
 	public void setNum(int num) {
 		this.num=num;
 	}

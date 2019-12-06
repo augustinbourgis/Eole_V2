@@ -23,7 +23,7 @@ public class Regate {
 //-------------------------- Getters/Setters --------------------------//
 	/**
 	 * GETTER distance
-	 * @return double
+	 * @return distance
 	 * la distance
 	 * @author Marine
 	 */
@@ -34,7 +34,7 @@ public class Regate {
 	
 	/**
 	 * SETTER distance
-	 * @return distance
+	 * @param distance
 	 * la distance
 	 * @author Marine
 	 */
@@ -45,7 +45,7 @@ public class Regate {
 	
 	/**
 	 * GETTER nbr de participants
-	 * @return int
+	 * @return nbParticipants
 	 * le nbr de participants
 	 * @author Marine
 	 */
@@ -56,7 +56,7 @@ public class Regate {
 	
 	/**
 	 * SETTER nbr de participants
-	 * @return nbr de participants
+	 * @param nbr de participants
 	 * le nbr de participants
 	 * @author Marine
 	 */
@@ -109,6 +109,7 @@ public class Regate {
 
 	/**
 	 * Permet de mettre a jour les classsments
+	 * @author Augustin
 	 */
 	public void faireClassement() {
 		for(Voilier v : classementGene) {
@@ -132,7 +133,7 @@ public class Regate {
 	 * @author Augustin et Wizard
 	 */
 	public String classementGeneral() {
-		String liste = "\tClassement GÃ©nÃ©ral : \n";
+		String liste = "\tClassement Général : \n";
 		int i = 1;
 		try {
 			for(Voilier v : classementGene) {
@@ -304,6 +305,7 @@ public class Regate {
 	 * TRUE : ajout réussi
 	 * FALSE : probleme avec l'ArrayList 'classementGene'
 	 * @author Augustin et Wizard 
+	 *
 	 */
 	public boolean ajoutArrivee(Voilier v, int temps) {
 		try {
