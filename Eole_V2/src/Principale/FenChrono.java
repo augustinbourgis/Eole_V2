@@ -125,7 +125,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			t.stop();
 		}
 		if(e.getSource() == btnReset) {
-			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redÃ©marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redémarer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
 			if(n != 1) {
 				t.stop();
 				min = 0;
@@ -218,7 +218,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
-			JButton btnArrivee = new JButton("ArrivÃ©e");
+			JButton btnArrivee = new JButton("Arrivée");
 			JButton btnAbandon = new JButton("Abandon");
 			JLabel espaceG = new JLabel();
 			JLabel espaceD = new JLabel();
