@@ -9,7 +9,7 @@ public class Regate {
 	private double distance; //en Milles !
 
 
-	private String nom;
+	private String num;
 	private int nbParticipants; // MAX 20
 	private int MAX_PARTICIPANT = 20;
 	ArrayList<Voilier> classementClasse1 = new ArrayList<Voilier>();
@@ -82,7 +82,7 @@ public class Regate {
 	public Regate(String nom, int nbParticipants, int distance) {
 		this.distance = distance;
 		this.nbParticipants = nbParticipants;
-		this.nom=nom;
+		this.num=nom;
 	}
 //-------------------------- Fin Constructeurs --------------------------//
 	
