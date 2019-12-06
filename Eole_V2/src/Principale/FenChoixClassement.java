@@ -73,38 +73,24 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement2.addActionListener(this);
 		btnClassement2.setBackground(new Color(0,74,124));
 		btnClassement2.setForeground(new Color(252,252,252));
-<<<<<<< HEAD
 		btnClassementTotal.addActionListener(this);
-=======
 		btnClassementTotal.addActionListener(this);
-
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		btnClassementTotal.setBackground(new Color(0,74,124));
 		btnClassementTotal.setForeground(new Color(252,252,252));
 		panelGeneral.setLayout(null);
 		panelGeneral.setBackground(new Color(207,235,255));
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelBoutons.setBackground(new Color(207,235,255));
-<<<<<<< HEAD
 		panelGeneral.add(panelBoutons);
 		panelClassement.setBounds(0, 40, 1084, 402);
 		panelClassement.setBackground(new Color(207,235,255));
-=======
 		panelGeneral.add(panelBoutons);
-
 		panelClassement.setBounds(0, 40, 1084, 402);
-
 		panelClassement.setBackground(new Color(207,235,255));
-
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelGeneral.setLayout(null);
-<<<<<<< HEAD
 		panelGeneral.add(panelBoutons);
-=======
 		panelGeneral.add(panelBoutons);
-
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();

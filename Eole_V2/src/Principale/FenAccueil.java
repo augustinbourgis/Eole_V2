@@ -25,6 +25,8 @@ public class FenAccueil extends JFrame{
 		JPanel Fen = new JPanel();
 		Fen.setPreferredSize(new Dimension(100,20));
 		JButton btnNouvelleRgate = new JButton("Nouvelle Régate"); //Bouton Nouvelle regate
+		btnNouvelleRgate.setForeground(new Color(41,33,104));
+		btnNouvelleRgate.setBackground(new Color(252,252,252));
 		getContentPane().add(btnNouvelleRgate);
 		btnNouvelleRgate.setBounds(347, 334, 165, 60);
 		btnNouvelleRgate.addActionListener(new ActionListener() {
