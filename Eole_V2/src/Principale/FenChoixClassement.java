@@ -1,4 +1,4 @@
-dpackage Principale;
+package Principale;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
