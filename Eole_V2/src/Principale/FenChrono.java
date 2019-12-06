@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Description : Windows of the race
@@ -28,9 +29,8 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	String nom;
 	int distance;
-	ArrayList<Voilier> lesParticipant;
-	Regate laRegate = new Regate(nom, lesParticipant.size() , distance);
-	
+	ArrayList<Voilier> lesParticipants;
+	Regate laRegate;
 	
 	/**
 	 * Variable of the timer
@@ -40,7 +40,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
-	public int arrive = lesParticipant.size();
+	public int arrive;
 	
 	/**
 	 * Variable of the icon to the JButton Undo
@@ -74,11 +74,9 @@ public class FenChrono extends JFrame implements ActionListener{
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
 		this.nom = nom;
 		this.distance = distance;
-		for(Voilier p : participants) {
-			lesParticipant.add(p);
-		}
-		
-		System.out.println(participants.size());
+		this.lesParticipants = participants;
+		laRegate = new Regate(nom, lesParticipants.size() , distance);
+		arrive = lesParticipants.size();
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -160,7 +158,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		        pan3Chrono.add(btnStart);
 		        pan3Chrono.add(btnStop);
 		        pan3Chrono.add(btnReset);
-		        arrive = lesParticipant.size();
+		        arrive = lesParticipants.size();
 		        btnBoucle();
 		        this.revalidate();
 			}
@@ -243,11 +241,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public void btnBoucle() {
 		panReg.removeAll();
-		for(int i = 1; i <= lesParticipant.size(); i++) {
+		for(Voilier p : lesParticipants) {
 			JPanel b = new JPanel();
 			JButton btnundo = new JButton(icone);
 			b.setBackground(new Color(207, 235, 255));
-			JLabel lblNom = new JLabel("d");
+			JLabel lblNom = new JLabel(p.getNom());
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
 			JButton btnArrivee = new JButton("Arriv�e");
@@ -340,11 +338,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
-		v.add(new Voilier("FDRR", 1));
-		v.add(new Voilier("FDRdR", 1));
-		v.add(new Voilier("FDRaR", 1));
-		v.add(new Voilier("FDRsR", 1));
-		v.add(new Voilier("FDRgR", 1));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Marine", 1, 1, "bol"));
+		v.add(new Voilier("Alice", 1, 1, "gorge"));
+		v.add(new Voilier("Augustin", 1, 1, "laura"));
+		v.add(new Voilier("Thomas", 1, 1, "gerard"));
 		FenChrono f77 = new FenChrono("etst", 2500, v);
 		f77.setVisible(true);
 	}
