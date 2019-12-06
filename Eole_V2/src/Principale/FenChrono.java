@@ -20,6 +20,13 @@ public class FenChrono extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+	/**
+	 * Variable of the class regate
+	 */
+	//Regate laregate = new Regate(nom, nbParticipants, distance);
+	
+	
 	/**
 	 * Variable of the timer
 	 * @see Check()
