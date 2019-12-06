@@ -25,14 +25,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Variable of the class regate
 	 */
-<<<<<<< HEAD
-	Regate laregate = new Regate(nom, nbParticipants, distance);
-=======
+	
 	String nom;
 	int distance;
 	ArrayList<Voilier> lesParticipant;
 	Regate laRegate = new Regate(nom, lesParticipant.size() , distance);
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 	
 	
 	/**
@@ -165,7 +162,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			}
 		}
 		if(e.getSource() == btnClassement) {
-			FenChoixClassement Fcc = new FenChoixClassement(laregate);
+			FenChoixClassement Fcc = new FenChoixClassement(laRegate);
 			Fcc.setVisible(true);
 			this.setVisible(false);
 			this.dispose();

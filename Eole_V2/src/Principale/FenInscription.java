@@ -168,18 +168,16 @@ public class FenInscription extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 		if(e.getSource()==btnAjouterListe) {
 			String res = txtNumeroVoilier.getText()+","+txtNomVoilier.getText()+" classe : "+txtClasse.getText()+", Rating : "+txtRating.getText()+" skipper : "+txtNomSkipper.getText();
 			panelListeParticipants.add(new JLabel());
 			lListeInfoParticipant.setText(lListeInfoParticipant.getText()+"\n"+res);
-=======
+		}
 		if(e.getSource() == btnDemarrerRegate) {
 			FenChrono f1 = new FenChrono();
 			this.setVisible(false);
 			this.dispose();
 			f1.setVisible(true);
->>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		}
 	}
 
