@@ -60,7 +60,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		
 		btnAjouterListe.setBounds(185, 351, 199, 23);
 		btnAjouterListe.setBackground(new Color(0,74,124));
 		btnDemarrerRegate.setBounds(185, 384, 199, 23);
@@ -82,17 +81,13 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGen.add(panelGauche);
 		panelGen.add(panelListeParticipants);
 		panelGauche.setLayout(null);
-
 		panelGauche.add(titreParcours);
-
 		JLabel label = new JLabel("");
 		label.setBounds(271, 0, 271, 34);
 		panelGauche .add(label);
 		lNumero.setBounds(0, 57, 190, 34);
 		lNumero.setHorizontalAlignment(SwingConstants.RIGHT);
-
 		panelGauche.add(new JLabel(""));
-
 		panelGauche.add(lNumero);
 		txtNumero.setBounds(207, 64, 208, 20);
 		panelGauche.add(txtNumero);
@@ -136,10 +131,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		panelGauche.add(lNomSkipper);
 		txtNomSkipper.setBounds(207, 284, 208, 20);
 		panelGauche.add(txtNomSkipper);
-		
-		
-		
-		
 		panelGauche.add(btnAjouterListe);
 		btnAjouterListe.addActionListener(this);
 		JLabel label_4 = new JLabel("");
@@ -149,7 +140,6 @@ public class FenInscription extends JFrame implements ActionListener{
 		btnDemarrerRegate.addActionListener(this);
 		btnSupprimer.setBackground(new Color(0,85,142));
 		btnSupprimer.setForeground(new Color(252,252,252));
-		
 		btnSupprimer.addActionListener(this);
 		GroupLayout gl_panelListeParticipants = new GroupLayout(panelListeParticipants);
 		gl_panelListeParticipants.setHorizontalGroup(
@@ -182,18 +172,14 @@ public class FenInscription extends JFrame implements ActionListener{
 					.addGap(286))
 		);
 		panelListeParticipants.setLayout(gl_panelListeParticipants);
-		
-	
-	
-		this.getContentPane().add(panelGen,"Center");
-
-		
+		this.getContentPane().add(panelGen,"Center");	
 	}
 	
 	 
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	
 	
 	public static void main (String [] args) {
 		FenInscription f = new FenInscription();

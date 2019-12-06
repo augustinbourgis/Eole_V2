@@ -28,7 +28,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
-	public int arrive = 20;
+	public int arrive = 2;
+	
+	/**
+	 * Variable of the icon to the JButton Undo
+	 */
 	URL urlImage = getClass().getResource("/Other/Maquette/undo.png");
 	Icon icone = new ImageIcon(new ImageIcon(urlImage).getImage().getScaledInstance(18, 18, Image.SCALE_DEFAULT));
 	
@@ -57,11 +61,11 @@ public class FenChrono extends JFrame implements ActionListener{
 	public FenChrono() {
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		setPreferredSize(new Dimension((int)dimension.getWidth(), (int)dimension.getHeight()));
 		setResizable(false);
 		JPanel panGen = new JPanel(new BorderLayout());
 		btnClassement.setPreferredSize(new Dimension(200, 50));
-		btnClassement.setVisible(false);
-		btnClassement.setEnabled(false);
 		panReg.setBackground(new Color(207, 235, 255));
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
@@ -104,6 +108,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
+		btnClassement.setVisible(false);
 		panReg.add(btnClassement);
 		panGen.add(panReg);
 		getContentPane().add(panGen);
@@ -125,7 +130,7 @@ public class FenChrono extends JFrame implements ActionListener{
 			t.stop();
 		}
 		if(e.getSource() == btnReset) {
-			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redÃ©marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redémarer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
 			if(n != 1) {
 				t.stop();
 				min = 0;
@@ -135,6 +140,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		        lblh.setText("00");
 		        lblSec.setText("00");
 		        btnClassement.setVisible(false);
+		        arrive = 2;
 		        btnBoucle();
 		        this.revalidate();
 			}
@@ -175,9 +181,8 @@ public class FenChrono extends JFrame implements ActionListener{
                 lblh.setText(String.valueOf(h));
             }
             if(arrive == 0) {
-    			t.stop();
-    			btnClassement.setVisible(true);
-    			btnClassement.setEnabled(true);
+            	btnClassement.setVisible(true);
+    			t.stop();	
     		}
 		}
 	}
@@ -211,14 +216,14 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public void btnBoucle() {
 		panReg.removeAll();
-		for(int i = 1; i <= 20; i++) {
+		for(int i = 1; i <= 2; i++) {
 			JPanel b = new JPanel();
 			JButton btnundo = new JButton(icone);
 			b.setBackground(new Color(207, 235, 255));
 			JLabel lblNom = new JLabel("Voilier DE FRED");
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
-			JButton btnArrivee = new JButton("ArrivÃ©e");
+			JButton btnArrivee = new JButton("Arrivée");
 			JButton btnAbandon = new JButton("Abandon");
 			JLabel espaceG = new JLabel();
 			JLabel espaceD = new JLabel();
@@ -246,6 +251,7 @@ public class FenChrono extends JFrame implements ActionListener{
 					tempsJLabel.setText(recupTemps());
 					b.revalidate();
 					arrive--;
+					System.out.println(arrive);
 				}
 			});
 			btnAbandon.addActionListener(new ActionListener() {
@@ -269,6 +275,7 @@ public class FenChrono extends JFrame implements ActionListener{
 					tempsJLabel.setText("00 : 00 : 00");
 					b.revalidate();
 					arrive--;
+					System.out.println(arrive);
 				}
 			});
 			btnundo.addActionListener(new ActionListener() {

@@ -1,12 +1,15 @@
 package Principale;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
@@ -72,6 +75,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement2.setBackground(new Color(0,74,124));
 		btnClassement2.setForeground(new Color(252,252,252));
 		btnClassementTotal.addActionListener(this);
+<<<<<<< HEAD
 		btnClassementTotal.setBackground(new Color(0,74,124));
 		btnClassementTotal.setForeground(new Color(252,252,252));
 		panelGeneral.setLayout(null);
@@ -79,8 +83,16 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		panelBoutons.setBounds(0, 0, 1084, 41);
 		panelBoutons.setBackground(new Color(207,235,255));
 		panelGeneral.add(panelBoutons);
+=======
+>>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelClassement.setBounds(0, 40, 1084, 402);
+<<<<<<< HEAD
 		panelClassement.setBackground(new Color(207,235,255));
+=======
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.setLayout(null);
+		panelGeneral.add(panelBoutons);
+>>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
@@ -102,10 +114,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 
 			break;
 		case 3:
-			
-
 			nbCases=classeGen.size()+1;
-
 			break;
 		}
 	}
@@ -291,7 +300,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 			panelClassement.setLayout(new GridLayout(nbCases,8));
 			break;
 		default:
-			panelClassement.setLayout(new GridLayout(nbCases+1,7));
+			panelClassement.setLayout(new GridLayout(nbCases,7));
 			break;
 		}
 		enteteClassement();
