@@ -46,7 +46,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 
 //-------------------------- Constructeurs --------------------------//
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Le constructeur de la fenetre
 	 * @param classe1
 	 * L'ArrayList de la classe 1
@@ -79,7 +79,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de connaitre le nombre de voilier à afficher par classement
 	 */
 	public void updateNbCases() {
@@ -102,7 +102,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet d'ajouter les boutons de haut de fenetre
 	 */
 	public void ajoutBoutons() {
@@ -118,7 +118,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de créer les entetes des colonnes du classement
 	 */
 	public void enteteClassement() {
@@ -148,7 +148,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * @param v
 	 * le voilier
 	 * @return
@@ -179,7 +179,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * @param v
 	 * le voilier
 	 * @return
@@ -243,7 +243,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de mettre les entetes au classement
 	 */
 	public void addEntete() {
@@ -270,8 +270,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	}
 	
 	
-	/**
-	 * @author Augustin
+	/** 
+	 * @author Augustin et Marine
 	 * Permet de charger le classement cliquer
 	 */
 	public void chargementClassement() {
