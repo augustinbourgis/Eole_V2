@@ -13,9 +13,15 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class FenInscription extends JFrame implements ActionListener{
-	//----- panel gï¿½nï¿½ral ----//
+	
+	/**
+	 * Description : Initialisation composant JFrame
+	 * @author Marine
+	 */
+	
+	//----- panel général ----//
 	JPanel panelGen = new JPanel();
-	JButton btnDemarrerRegate = new JButton("Dï¿½marrer la rï¿½gate");
+	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
 	
 	//---- panel parcours sur la gauche  en haut-----//
 	JPanel panelGauche = new JPanel();
@@ -23,7 +29,7 @@ public class FenInscription extends JFrame implements ActionListener{
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Numï¿½ro : ");
+	JLabel lNumero = new JLabel("Numero : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 	
 	// ---- panel participant sur la gauche en bas ---//
@@ -40,14 +46,14 @@ public class FenInscription extends JFrame implements ActionListener{
 	JLabel lClasse = new JLabel("Classe : ");
 	JLabel lRating = new JLabel("Rating : ");
 	JLabel lNomSkipper = new JLabel("Nom du skipper : ");
-	JButton btnAjouterListe = new JButton ("Ajouter ï¿½ la liste");
+	JButton btnAjouterListe = new JButton ("Ajouter à la liste");
 	
 	
 	//---- panel liste participant sur la droite---//
 	
 	JPanel panelListeParticipants = new JPanel();
 	JLabel titreListe = new JLabel("LISTE DES PARTICIPANTS");
-	JLabel lInfoParticipant = new JLabel("Infos participant : ");
+	JLabel lInfoParticipant = new JLabel("Infos participants : ");
 	JLabel lListeInfoParticipant = new JLabel("222222222222222222222222222222222222222222"
 			+ "\n"+"22222222222222");
 	JButton btnSupprimer = new JButton("Supprimer");
@@ -55,7 +61,7 @@ public class FenInscription extends JFrame implements ActionListener{
 	
 	
 	public FenInscription() {
-		this.setTitle("Fenï¿½tre Inscription");
+		this.setTitle("Fenetre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
