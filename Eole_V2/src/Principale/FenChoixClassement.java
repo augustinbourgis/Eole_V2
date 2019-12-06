@@ -1,23 +1,12 @@
 package Principale;
 
-import java.awt.BorderLayout;
-import java.awt.Cursor;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
@@ -53,7 +42,6 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JButton btnClassement1 = new JButton("Obtenir palmarès classe 1");
 	private JButton btnClassement2 = new JButton("Obtenir palmarès classe 2");
 	private JButton btnClassementTotal = new JButton("Obtenir palmarès général");
-	private JButton btnPDF = new JButton("Export PDF");
 	
 
 //-------------------------- Constructeurs --------------------------//
@@ -79,11 +67,11 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement1.addActionListener(this);
 		btnClassement2.addActionListener(this);
 		btnClassementTotal.addActionListener(this);
-		btnPDF.addActionListener(this);
-		panelGeneral.setLayout(new BorderLayout());
-		panelBoutons.setLayout(new GridLayout(2,4));
-		panelGeneral.add(panelBoutons,BorderLayout.NORTH);
-		panelGeneral.add(panelClassement,BorderLayout.CENTER);
+		panelGeneral.setLayout(null);
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.add(panelBoutons);
+		panelClassement.setBounds(0, 40, 1084, 402);
+		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
 		this.setVisible(true);
@@ -118,10 +106,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * Permet d'ajouter les boutons de haut de fenetre
 	 */
 	public void ajoutBoutons() {
+		panelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelBoutons.add(btnClassement1);
 		panelBoutons.add(btnClassement2);
 		panelBoutons.add(btnClassementTotal);
-		panelBoutons.add(btnPDF);
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
@@ -317,9 +305,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 			panelClassement.removeAll();
 			chargementClassement();
 			SwingUtilities.updateComponentTreeUI(this);
-		}else if(e.getSource()==btnPDF) {
 		}
-			
 		
 	}
 
