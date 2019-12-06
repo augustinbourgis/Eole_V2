@@ -1,18 +1,10 @@
 package Principale;
 
-import java.awt.BorderLayout;
-import java.awt.Cursor;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.awt.*;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,12 +45,11 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JButton btnClassement1 = new JButton("Obtenir palmarès classe 1");
 	private JButton btnClassement2 = new JButton("Obtenir palmarès classe 2");
 	private JButton btnClassementTotal = new JButton("Obtenir palmarès général");
-	private JButton btnPDF = new JButton("Export PDF");
 	
 
 //-------------------------- Constructeurs --------------------------//
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Le constructeur de la fenetre
 	 * @param classe1
 	 * L'ArrayList de la classe 1
@@ -79,11 +70,11 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement1.addActionListener(this);
 		btnClassement2.addActionListener(this);
 		btnClassementTotal.addActionListener(this);
-		btnPDF.addActionListener(this);
-		panelGeneral.setLayout(new BorderLayout());
-		panelBoutons.setLayout(new GridLayout(2,4));
-		panelGeneral.add(panelBoutons,BorderLayout.NORTH);
-		panelGeneral.add(panelClassement,BorderLayout.CENTER);
+		panelClassement.setBounds(0, 40, 1084, 402);
+		panelBoutons.setBounds(0, 0, 1084, 41);
+		panelGeneral.setLayout(null);
+		panelGeneral.add(panelBoutons);
+		panelGeneral.add(panelClassement);
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
 		this.setVisible(true);
@@ -91,7 +82,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de connaitre le nombre de voilier à afficher par classement
 	 */
 	public void updateNbCases() {
@@ -104,24 +95,21 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 
 			break;
 		case 3:
-			
-
 			nbCases=classeGen.size()+1;
-
 			break;
 		}
 	}
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet d'ajouter les boutons de haut de fenetre
 	 */
 	public void ajoutBoutons() {
+		panelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelBoutons.add(btnClassement1);
 		panelBoutons.add(btnClassement2);
 		panelBoutons.add(btnClassementTotal);
-		panelBoutons.add(btnPDF);
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
@@ -130,7 +118,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de créer les entetes des colonnes du classement
 	 */
 	public void enteteClassement() {
@@ -160,7 +148,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * @param v
 	 * le voilier
 	 * @return
@@ -191,7 +179,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * @param v
 	 * le voilier
 	 * @return
@@ -255,7 +243,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * @author Augustin
+	 * @author Augustin et Marine
 	 * Permet de mettre les entetes au classement
 	 */
 	public void addEntete() {
@@ -282,8 +270,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	}
 	
 	
-	/**
-	 * @author Augustin
+	/** 
+	 * @author Augustin et Marine
 	 * Permet de charger le classement cliquer
 	 */
 	public void chargementClassement() {
@@ -293,7 +281,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 			panelClassement.setLayout(new GridLayout(nbCases,8));
 			break;
 		default:
-			panelClassement.setLayout(new GridLayout(nbCases+1,7));
+			panelClassement.setLayout(new GridLayout(nbCases,7));
 			break;
 		}
 		enteteClassement();
@@ -317,9 +305,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 			panelClassement.removeAll();
 			chargementClassement();
 			SwingUtilities.updateComponentTreeUI(this);
-		}else if(e.getSource()==btnPDF) {
 		}
-			
 		
 	}
 
