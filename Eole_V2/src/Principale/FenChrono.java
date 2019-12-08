@@ -26,7 +26,6 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Variable of the class regate
 	 */
-	
 	String nom;
 	int distance;
 	ArrayList<Voilier> lesParticipants;
@@ -134,6 +133,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Description : Action of the button Start, Stop and Reset
 	 * @author Thomas DURST
+	 * @see btnBoucle()
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -174,6 +174,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Description : Class for the time to add a sec on the windows label
 	 * @author Thomas DURST
+	 * @see btnClassAffichage()
 	 */
 	class Check implements ActionListener {
 
@@ -213,7 +214,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Description : return the time of the time for show on the label in the window
+	 * Description : return the time of the race for show on the label in the window
 	 * @author Thomas DURST
 	 * @return String
 	 */
@@ -241,11 +242,12 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public void btnBoucle() {
 		panReg.removeAll();
+		int indiceVoilier = 1;
 		for(Voilier p : lesParticipants) {
 			JPanel b = new JPanel();
 			JButton btnundo = new JButton(icone);
 			b.setBackground(new Color(207, 235, 255));
-			JLabel lblNom = new JLabel(p.getNom());
+			JLabel lblNom = new JLabel(indiceVoilier + " | " + p.getNom());
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
 			JButton btnArrivee = new JButton("Arriv�e");
@@ -263,6 +265,8 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					String tempsHMS = "";
+					int tempsSec = 0;
 					btnundo.setPreferredSize(new Dimension(20, 20));
 					tempsJLabel.setPreferredSize(new Dimension(170, 20));
 					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
@@ -273,9 +277,12 @@ public class FenChrono extends JFrame implements ActionListener{
 					b.add(btnundo);
 					b.add(tempsJLabel);
 					b.add(espaceD);
-					tempsJLabel.setText(recupTemps());
+					tempsHMS = recupTemps();
+					tempsJLabel.setText(tempsHMS);
 					b.revalidate();
 					arrive--;
+					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+					p.setTempsReel(tempsSec);
 				}
 			});
 			btnAbandon.addActionListener(new ActionListener() {
@@ -286,6 +293,8 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					String tempsHMS = "00 : 00 : 00";
+					int tempsSec = 0;
 					btnundo.setPreferredSize(new Dimension(20, 20));
 					tempsJLabel.setPreferredSize(new Dimension(170, 20));
 					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
@@ -296,9 +305,11 @@ public class FenChrono extends JFrame implements ActionListener{
 					b.add(btnundo);
 					b.add(tempsJLabel);
 					b.add(espaceD);
-					tempsJLabel.setText("00 : 00 : 00");
+					tempsJLabel.setText(tempsHMS);
 					b.revalidate();
 					arrive--;
+					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+					p.setTempsReel(tempsSec);
 				}
 			});
 			btnundo.addActionListener(new ActionListener() {
@@ -326,9 +337,31 @@ public class FenChrono extends JFrame implements ActionListener{
 			b.add(btnAbandon);
 			b.add(espaceD);
 			panReg.add(b);
+			indiceVoilier++;
 		}
 	}
 	
+	/**
+	 * Description : Return the time of the Voilier in Sec
+	 * @author Thomas DURST
+	 * @param Heure
+	 * @param Min
+	 * @param Sec
+	 * @return tempsReelSec
+	 */
+	public int getTempsReelSec(String Heure, String Min, String Sec) {
+		int tempsReelSec = 0;
+		tempsReelSec += Integer.parseInt(Heure) * 3600; 
+		tempsReelSec += Integer.parseInt(Min) * 60;
+		tempsReelSec += Integer.parseInt(Sec);
+		return tempsReelSec;
+	}
+	
+	
+	/**
+	 * Desciption : Affiche le boutton dans en dessous du chrono
+	 * @author Thomas DURST
+	 */
 	public void btnClassAffichage() {
 		pan3Chrono.removeAll();
 		pan3Chrono.add(btnClassement);
