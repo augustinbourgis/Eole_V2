@@ -11,9 +11,9 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	private ArrayList<Voilier> lesVoiliersInscrits = new ArrayList<Voilier>();
 	
-	// ----- panel général ----//
+	// ----- panel gï¿½nï¿½ral ----//
 	JPanel panelGen = new JPanel();
-	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
+	JButton btnDemarrerRegate = new JButton("Dï¿½marrer la rï¿½gate");
 
 	// ---- panel parcours sur la gauche en haut-----//
 	JPanel panelGauche = new JPanel();
@@ -21,7 +21,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Numéro : ");
+	JLabel lNumero = new JLabel("Numï¿½ro : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 
 	// ---- panel participant sur la gauche en bas ---//
@@ -38,7 +38,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel lClasse = new JLabel("Classe : ");
 	JLabel lRating = new JLabel("Rating : ");
 	JLabel lNomSkipper = new JLabel("Nom du skipper : ");
-	JButton btnAjouterListe = new JButton("Ajouter à la liste");
+	JButton btnAjouterListe = new JButton("Ajouter ï¿½ la liste");
 
 	// ---- panel liste participant sur la droite---//
 
@@ -48,7 +48,7 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	public FenInscription() {
 
-		this.setTitle("Fenêtre Inscription");
+		this.setTitle("Fenï¿½tre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
@@ -164,6 +164,7 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterListe) {
+			//Ajout d'un test si des champs sont vide
 			lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
 			JLabel l = new JLabel();
 			l.setText(txtNomVoilier.getText());

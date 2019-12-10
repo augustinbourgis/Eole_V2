@@ -63,6 +63,10 @@ public class FenChrono extends JFrame implements ActionListener{
 	JLabel lbl1 = new JLabel();
 	JLabel lbl2 = new JLabel();
 	
+	/**
+	 * Arraylist des voiliers qui ont abandonné
+	 */
+	ArrayList<Voilier> ArrAbandon = new ArrayList<Voilier>();
 	
 	/**
 	 * Description : Fen Chrono Initialisation composant
@@ -164,6 +168,14 @@ public class FenChrono extends JFrame implements ActionListener{
 			}
 		}
 		if(e.getSource() == btnClassement) {
+			for(Voilier v : ArrAbandon) {
+				laRegate.classementGene.add(v);
+				if(v.getClasse() == 1) {
+					laRegate.classementClasse1.add(v);
+				} else {
+					laRegate.classementClasse2.add(v);
+				}
+			}
 			FenChoixClassement Fcc = new FenChoixClassement(laRegate);
 			Fcc.setVisible(true);
 			this.setVisible(false);
@@ -325,12 +337,7 @@ public class FenChrono extends JFrame implements ActionListener{
 						tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
 						p.setTempsReel(tempsSec);
 						p.abandon();
-						laRegate.classementGene.add(p);
-						if(p.getClasse() == 1) {
-							laRegate.classementClasse1.add(p);
-						} else {
-							laRegate.classementClasse2.add(p);
-						}
+						ArrAbandon.add(p);
 					} else {
 						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas démarré", "Information", JOptionPane.INFORMATION_MESSAGE);
 					}
@@ -395,6 +402,21 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
 		v.add(new Voilier("Laura", 1, 1, "gol"));
 		v.add(new Voilier("Marine", 1, 1, "bol"));
 		v.add(new Voilier("Alice", 1, 1, "gorge"));
