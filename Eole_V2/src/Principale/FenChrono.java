@@ -239,7 +239,10 @@ public class FenChrono extends JFrame implements ActionListener{
         }
 		return hS + " : " + minS + " : " + secS;
 	}
-	
+	/**
+	 * Description : Permet d'inisialiser les voiliers dans le chrono
+	 * @author Thomas DURST
+	 */
 	public void btnBoucle() {
 		panReg.removeAll();
 		int indiceVoilier = 1;
@@ -265,24 +268,34 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					String tempsHMS = "";
-					int tempsSec = 0;
-					btnundo.setPreferredSize(new Dimension(20, 20));
-					tempsJLabel.setPreferredSize(new Dimension(170, 20));
-					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
-					tempsJLabel.setForeground(new Color(0, 128, 0));
-					b.remove(btnAbandon);
-					b.remove(btnArrivee);
-					b.remove(espaceD);
-					b.add(btnundo);
-					b.add(tempsJLabel);
-					b.add(espaceD);
-					tempsHMS = recupTemps();
-					tempsJLabel.setText(tempsHMS);
-					b.revalidate();
-					arrive--;
-					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
-					p.setTempsReel(tempsSec);
+					if(t.isRunning()) {
+						String tempsHMS = "";
+						int tempsSec = 0;
+						btnundo.setPreferredSize(new Dimension(20, 20));
+						tempsJLabel.setPreferredSize(new Dimension(170, 20));
+						tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+						tempsJLabel.setForeground(new Color(0, 128, 0));
+						b.remove(btnAbandon);
+						b.remove(btnArrivee);
+						b.remove(espaceD);
+						b.add(btnundo);
+						b.add(tempsJLabel);
+						b.add(espaceD);
+						tempsHMS = recupTemps();
+						tempsJLabel.setText(tempsHMS);
+						b.revalidate();
+						arrive--;
+						tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+						p.setTempsReel(tempsSec);
+						laRegate.classementGene.add(p);
+						if(p.getClasse() == 1) {
+							laRegate.classementClasse1.add(p);
+						} else {
+							laRegate.classementClasse2.add(p);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas démarré", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			});
 			btnAbandon.addActionListener(new ActionListener() {
@@ -293,23 +306,34 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					String tempsHMS = "00 : 00 : 00";
-					int tempsSec = 0;
-					btnundo.setPreferredSize(new Dimension(20, 20));
-					tempsJLabel.setPreferredSize(new Dimension(170, 20));
-					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
-					tempsJLabel.setForeground(Color.RED);
-					b.remove(btnAbandon);
-					b.remove(btnArrivee);
-					b.remove(espaceD);
-					b.add(btnundo);
-					b.add(tempsJLabel);
-					b.add(espaceD);
-					tempsJLabel.setText(tempsHMS);
-					b.revalidate();
-					arrive--;
-					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
-					p.setTempsReel(tempsSec);
+					if(t.isRunning()) {
+						String tempsHMS = "00 : 00 : 00";
+						int tempsSec = 0;
+						btnundo.setPreferredSize(new Dimension(20, 20));
+						tempsJLabel.setPreferredSize(new Dimension(170, 20));
+						tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+						tempsJLabel.setForeground(Color.RED);
+						b.remove(btnAbandon);
+						b.remove(btnArrivee);
+						b.remove(espaceD);
+						b.add(btnundo);
+						b.add(tempsJLabel);
+						b.add(espaceD);
+						tempsJLabel.setText(tempsHMS);
+						b.revalidate();
+						arrive--;
+						tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+						p.setTempsReel(tempsSec);
+						p.abandon();
+						laRegate.classementGene.add(p);
+						if(p.getClasse() == 1) {
+							laRegate.classementClasse1.add(p);
+						} else {
+							laRegate.classementClasse2.add(p);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas démarré", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			});
 			btnundo.addActionListener(new ActionListener() {
