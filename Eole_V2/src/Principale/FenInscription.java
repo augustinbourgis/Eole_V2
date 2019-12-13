@@ -11,6 +11,9 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	private ArrayList<Voilier> lesVoiliersInscrits = new ArrayList<Voilier>();
 	
+	int temp = 0;
+	ArrayList<JLabel> lesLabels = new ArrayList<JLabel>();
+	
 	// ----- panel général ----//
 	JPanel panelGen = new JPanel();
 	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
@@ -21,7 +24,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel titreParcours = new JLabel("PARCOURS");
 	JTextField txtNumero = new JTextField("");
 	JTextField txtDistance = new JTextField("");
-	JLabel lNumero = new JLabel("Numéro : ");
+	JLabel lNumero = new JLabel("Nom : ");
 	JLabel lDistance = new JLabel("Distance (en miles) : ");
 
 	// ---- panel participant sur la gauche en bas ---//
@@ -159,20 +162,49 @@ public class FenInscription extends JFrame implements ActionListener {
 
 
 		this.getContentPane().add(panelGen, "Center");
-
+		addLabelAjoutListe();
+	}
+	
+	private void addLabelAjoutListe() {
+		int x=0,y=0,d=0;
+		for(int i=1;i<=20;i++){
+			JLabel l = new JLabel();
+			lesLabels.add(l);
+			if(i<=10) {
+				x=0;
+				y=20;
+			}else {
+				d=-200;
+				x=220;
+			}
+			l.setBounds(150+x,100+y*i+d,200,20);		
+			panelListeParticipants.add(l);
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterListe) {
-			lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
-			JLabel l = new JLabel();
-			l.setText(txtNomVoilier.getText());
-			
+			if(temp==20) {
+				JOptionPane.showMessageDialog(this, "Vous ne pouvez pas ajouter plus de 20 participants");
+			}else {
+				try {
+					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
+					JLabel l = lesLabels.get(temp);
+					l.setText(txtNomVoilier.getText()+" / "+txtNomSkipper.getText());
+					SwingUtilities.updateComponentTreeUI(this);
+					temp++;
+				}catch(NumberFormatException err) {
+					JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas été remplies");
+				}
+			}			
 		}else if(e.getSource()==btnDemarrerRegate) {
-			
-			
-		
-			
+			try {
+				new FenChrono(txtNumero.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
+				this.dispose();
+			}catch(Exception err) {
+				err.printStackTrace();
+				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas été remplies");
+			}
 		}
 	}
 

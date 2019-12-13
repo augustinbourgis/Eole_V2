@@ -335,7 +335,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		FenChrono f77 = new FenChrono("etst", 14, 2500);
-		f77.setVisible(true);
+		//FenChrono f77 = new FenChrono("etst", 14, 2500);
+		//f77.setVisible(true);
 	}
 }
