@@ -15,6 +15,9 @@ public class FenAccueil extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Description : variables de la classe FenAccueil
+	 */
 	JPanel Fen = new JPanel();
 	JButton btnNouvelleRgate = new JButton("Nouvelle Regate");
 	//JLabel qui sert de Logo
