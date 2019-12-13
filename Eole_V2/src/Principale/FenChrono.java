@@ -132,6 +132,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
+		this.setVisible(true);
 	}
 	
 	/**
@@ -411,6 +412,8 @@ public class FenChrono extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
+		//FenChrono f77 = new FenChrono("etst", 14, 2500);
+		//f77.setVisible(true);
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
 		v.add(new Voilier("Laura", 1, 1, "gol"));
 		v.add(new Voilier("Laura", 1, 1, "gol"));
