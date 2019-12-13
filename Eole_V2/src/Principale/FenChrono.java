@@ -409,30 +409,4 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan3Chrono.add(btnReset);
 		this.revalidate();
 	}
-	
-	public static void main(String[] args) {
-		ArrayList<Voilier> v = new ArrayList<Voilier>();
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Marine", 1, 1, "bol"));
-		v.add(new Voilier("Alice", 1, 1, "gorge"));
-		v.add(new Voilier("Augustin", 1, 1, "laura"));
-		v.add(new Voilier("Thomas", 1, 1, "gerard"));
-		FenChrono f77 = new FenChrono("etst", 2500, v);
-		f77.setVisible(true);
-	}
 }
