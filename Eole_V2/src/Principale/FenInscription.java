@@ -14,7 +14,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	int temp = 0;
 	ArrayList<JLabel> lesLabels = new ArrayList<JLabel>();
 	
-	// ----- panel général ----//
+	// ----- panel gï¿½nï¿½ral ----//
 	// ----- panel gï¿½nï¿½ral ----//
 	JPanel panelGen = new JPanel();
 	JButton btnDemarrerRegate = new JButton("Dï¿½marrer la rï¿½gate");
@@ -195,21 +195,16 @@ public class FenInscription extends JFrame implements ActionListener {
 					SwingUtilities.updateComponentTreeUI(this);
 					temp++;
 				}catch(NumberFormatException err) {
-					JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas été remplies");
+					JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas ï¿½tï¿½ remplies");
 				}
-			}			
-			//Ajout d'un test si des champs sont vide
-			lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
-			JLabel l = new JLabel();
-			l.setText(txtNomVoilier.getText());
-			
+			}
 		}else if(e.getSource()==btnDemarrerRegate) {
 			try {
 				new FenChrono(txtNumero.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
 				this.dispose();
 			}catch(Exception err) {
 				err.printStackTrace();
-				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas été remplies");
+				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas ï¿½tï¿½ remplies");
 			}
 		}
 	}
