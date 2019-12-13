@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Description : Windows of the race
@@ -25,12 +26,10 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Variable of the class regate
 	 */
-	
 	String nom;
 	int distance;
-	ArrayList<Voilier> lesParticipant;
-	Regate laRegate = new Regate(nom, lesParticipant.size() , distance);
-	
+	ArrayList<Voilier> lesParticipants;
+	Regate laRegate;
 	
 	/**
 	 * Variable of the timer
@@ -40,7 +39,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	private int h = 0;
 	public int min = 0;
 	public int sec = 0;
-	public int arrive = lesParticipant.size();
+	public int arrive;
 	
 	/**
 	 * Variable of the icon to the JButton Undo
@@ -64,6 +63,10 @@ public class FenChrono extends JFrame implements ActionListener{
 	JLabel lbl1 = new JLabel();
 	JLabel lbl2 = new JLabel();
 	
+	/**
+	 * Arraylist des voiliers qui ont abandonné
+	 */
+	ArrayList<Voilier> ArrAbandon = new ArrayList<Voilier>();
 	
 	/**
 	 * Description : Fen Chrono Initialisation composant
@@ -74,7 +77,9 @@ public class FenChrono extends JFrame implements ActionListener{
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
 		this.nom = nom;
 		this.distance = distance;
-		
+		this.lesParticipants = participants;
+		laRegate = new Regate(nom, lesParticipants.size() , distance);
+		arrive = lesParticipants.size();
 		setTitle("Course");
 		setPreferredSize(new Dimension(1100, 730));
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -127,24 +132,32 @@ public class FenChrono extends JFrame implements ActionListener{
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
+		this.setVisible(true);
 	}
 	
 	/**
 	 * Description : Action of the button Start, Stop and Reset
 	 * @author Thomas DURST
+	 * @see btnBoucle()
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		// Action du btnStart
 		if(e.getSource() == btnStart) {
 			t.start();
 		}
+		// Action du btnStop
 		if(e.getSource() == btnStop) {
 			t.stop();
 		}
+		// Action du btnReset
 		if(e.getSource() == btnReset) {
-			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous red�marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
-			if(n != 1) {
+			// Demande confirmation du redémarage
+			int validation = JOptionPane.showConfirmDialog(this, "Voulez - vous red�marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			// Si la confirmation est oui alors validation != 1
+			if(validation != 1) {
+				// Arret du chrono et remise à 0 du chrono visuel
 				t.stop();
 				min = 0;
 		        sec = 0;
@@ -152,16 +165,29 @@ public class FenChrono extends JFrame implements ActionListener{
 		        lblMin.setText("00");
 		        lblh.setText("00");
 		        lblSec.setText("00");
+		        // Reset toute les Voiliers --> Suppresion puis rajout des panels
 		        pan3Chrono.removeAll();
 		        pan3Chrono.add(btnStart);
 		        pan3Chrono.add(btnStop);
 		        pan3Chrono.add(btnReset);
-		        arrive = 2;
+		        arrive = lesParticipants.size();
 		        btnBoucle();
+		        // Actualisation de la frame
 		        this.revalidate();
 			}
 		}
+		// Action du btnClassement
 		if(e.getSource() == btnClassement) {
+			// Ajoute les voiliers qui ont abandonné à la fin du classement 
+			for(Voilier v : ArrAbandon) {
+				laRegate.classementGene.add(v);
+				if(v.getClasse() == 1) {
+					laRegate.classementClasse1.add(v);
+				} else {
+					laRegate.classementClasse2.add(v);
+				}
+			}
+			// Ouvre la fenetre FenChoixClassement et ferme la fenChrono
 			FenChoixClassement Fcc = new FenChoixClassement(laRegate);
 			Fcc.setVisible(true);
 			this.setVisible(false);
@@ -172,12 +198,14 @@ public class FenChrono extends JFrame implements ActionListener{
 	/**
 	 * Description : Class for the time to add a sec on the windows label
 	 * @author Thomas DURST
+	 * @see btnClassAffichage()
 	 */
 	class Check implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			// Permet d'ajouter les secondes au chrono quand il démarre et quand il reste enclancher
 			sec += 1;
             if (sec == 60) {
                 min += 1;
@@ -187,6 +215,7 @@ public class FenChrono extends JFrame implements ActionListener{
                 h += 1;
                 min = 0;
             }
+            // Intègre au label de la JFrame la valeur du timer
             if (sec < 10) {
                 lblSec.setText("0" + sec);
             } else {
@@ -202,6 +231,7 @@ public class FenChrono extends JFrame implements ActionListener{
             } else {
                 lblh.setText(String.valueOf(h));
             }
+            // Si les voiliers sont arrivés alors stop le chrono et affiche le btnClassement
             if(arrive == 0) {
             	btnClassAffichage();
     			t.stop();
@@ -211,7 +241,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Description : return the time of the time for show on the label in the window
+	 * Description : return the time of the race for show on the label in the window
 	 * @author Thomas DURST
 	 * @return String
 	 */
@@ -236,14 +266,18 @@ public class FenChrono extends JFrame implements ActionListener{
         }
 		return hS + " : " + minS + " : " + secS;
 	}
-	
+	/**
+	 * Description : Permet d'inisialiser les voiliers dans le chrono
+	 * @author Thomas DURST
+	 */
 	public void btnBoucle() {
 		panReg.removeAll();
-		for(int i = 1; i <= lesParticipant.size(); i++) {
+		int indiceVoilier = 1;
+		for(Voilier p : lesParticipants) {
 			JPanel b = new JPanel();
 			JButton btnundo = new JButton(icone);
 			b.setBackground(new Color(207, 235, 255));
-			JLabel lblNom = new JLabel("d");
+			JLabel lblNom = new JLabel(indiceVoilier + " | " + p.getNom());
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
 			JButton btnArrivee = new JButton("Arriv�e");
@@ -261,19 +295,34 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					btnundo.setPreferredSize(new Dimension(20, 20));
-					tempsJLabel.setPreferredSize(new Dimension(170, 20));
-					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
-					tempsJLabel.setForeground(new Color(0, 128, 0));
-					b.remove(btnAbandon);
-					b.remove(btnArrivee);
-					b.remove(espaceD);
-					b.add(btnundo);
-					b.add(tempsJLabel);
-					b.add(espaceD);
-					tempsJLabel.setText(recupTemps());
-					b.revalidate();
-					arrive--;
+					if(t.isRunning()) {
+						String tempsHMS = "";
+						int tempsSec = 0;
+						btnundo.setPreferredSize(new Dimension(20, 20));
+						tempsJLabel.setPreferredSize(new Dimension(170, 20));
+						tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
+						tempsJLabel.setForeground(new Color(0, 128, 0));
+						b.remove(btnAbandon);
+						b.remove(btnArrivee);
+						b.remove(espaceD);
+						b.add(btnundo);
+						b.add(tempsJLabel);
+						b.add(espaceD);
+						tempsHMS = recupTemps();
+						tempsJLabel.setText(tempsHMS);
+						b.revalidate();
+						arrive--;
+						tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+						p.setTempsReel(tempsSec);
+						laRegate.classementGene.add(p);
+						if(p.getClasse() == 1) {
+							laRegate.classementClasse1.add(p);
+						} else {
+							laRegate.classementClasse2.add(p);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas démarré", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			});
 			btnAbandon.addActionListener(new ActionListener() {
@@ -284,6 +333,8 @@ public class FenChrono extends JFrame implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					String tempsHMS = "00 : 00 : 00";
+					int tempsSec = 0;
 					btnundo.setPreferredSize(new Dimension(20, 20));
 					tempsJLabel.setPreferredSize(new Dimension(170, 20));
 					tempsJLabel.setFont(new Font("Lucida Gande", Font.BOLD, 20));
@@ -294,9 +345,13 @@ public class FenChrono extends JFrame implements ActionListener{
 					b.add(btnundo);
 					b.add(tempsJLabel);
 					b.add(espaceD);
-					tempsJLabel.setText("00 : 00 : 00");
+					tempsJLabel.setText(tempsHMS);
 					b.revalidate();
 					arrive--;
+					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
+					p.setTempsReel(tempsSec);
+					p.abandon();
+					ArrAbandon.add(p);
 				}
 			});
 			btnundo.addActionListener(new ActionListener() {
@@ -324,9 +379,31 @@ public class FenChrono extends JFrame implements ActionListener{
 			b.add(btnAbandon);
 			b.add(espaceD);
 			panReg.add(b);
+			indiceVoilier++;
 		}
 	}
 	
+	/**
+	 * Description : Return the time of the Voilier in Sec
+	 * @author Thomas DURST
+	 * @param Heure
+	 * @param Min
+	 * @param Sec
+	 * @return tempsReelSec
+	 */
+	public int getTempsReelSec(String Heure, String Min, String Sec) {
+		int tempsReelSec = 0;
+		tempsReelSec += Integer.parseInt(Heure) * 3600; 
+		tempsReelSec += Integer.parseInt(Min) * 60;
+		tempsReelSec += Integer.parseInt(Sec);
+		return tempsReelSec;
+	}
+	
+	
+	/**
+	 * Desciption : Affiche le boutton dans en dessous du chrono
+	 * @author Thomas DURST
+	 */
 	public void btnClassAffichage() {
 		pan3Chrono.removeAll();
 		pan3Chrono.add(btnClassement);
@@ -337,5 +414,28 @@ public class FenChrono extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 		//FenChrono f77 = new FenChrono("etst", 14, 2500);
 		//f77.setVisible(true);
+		ArrayList<Voilier> v = new ArrayList<Voilier>();
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Marine", 1, 1, "bol"));
+		v.add(new Voilier("Alice", 1, 1, "gorge"));
+		v.add(new Voilier("Augustin", 1, 1, "laura"));
+		v.add(new Voilier("Thomas", 1, 1, "gerard"));
+		FenChrono f77 = new FenChrono("etst", 2500, v);
+		f77.setVisible(true);
 	}
 }

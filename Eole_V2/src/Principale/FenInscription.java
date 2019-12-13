@@ -15,8 +15,9 @@ public class FenInscription extends JFrame implements ActionListener {
 	ArrayList<JLabel> lesLabels = new ArrayList<JLabel>();
 	
 	// ----- panel général ----//
+	// ----- panel gï¿½nï¿½ral ----//
 	JPanel panelGen = new JPanel();
-	JButton btnDemarrerRegate = new JButton("Démarrer la régate");
+	JButton btnDemarrerRegate = new JButton("Dï¿½marrer la rï¿½gate");
 
 	// ---- panel parcours sur la gauche en haut-----//
 	JPanel panelGauche = new JPanel();
@@ -41,7 +42,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JLabel lClasse = new JLabel("Classe : ");
 	JLabel lRating = new JLabel("Rating : ");
 	JLabel lNomSkipper = new JLabel("Nom du skipper : ");
-	JButton btnAjouterListe = new JButton("Ajouter à la liste");
+	JButton btnAjouterListe = new JButton("Ajouter ï¿½ la liste");
 
 	// ---- panel liste participant sur la droite---//
 
@@ -51,7 +52,7 @@ public class FenInscription extends JFrame implements ActionListener {
 
 	public FenInscription() {
 
-		this.setTitle("Fenêtre Inscription");
+		this.setTitle("Fenï¿½tre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
@@ -197,6 +198,11 @@ public class FenInscription extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas été remplies");
 				}
 			}			
+			//Ajout d'un test si des champs sont vide
+			lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
+			JLabel l = new JLabel();
+			l.setText(txtNomVoilier.getText());
+			
 		}else if(e.getSource()==btnDemarrerRegate) {
 			try {
 				new FenChrono(txtNumero.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
