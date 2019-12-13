@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.JPanel;
 
 /**
- * Description : accueil
+ * Description : fenêtre accueil
  * @author : Alice CHEREL Laura SCHAEFER
  * @version 1.0
  */
@@ -17,45 +17,55 @@ public class FenAccueil extends JFrame{
 	
 	JPanel Fen = new JPanel();
 	JButton btnNouvelleRgate = new JButton("Nouvelle Regate");
-	JLabel lblLogo = new JLabel(""); //JLabel qui sert de Logo
-	JLabel lblFond = new JLabel("New label"); //JLabel qui sert d'image de fond
+	//JLabel qui sert de Logo
+	JLabel lblLogo = new JLabel(""); 
+	//JLabel qui sert d'image de fond
+	JLabel lblFond = new JLabel("New label"); 
 	
+	/**
+	 * Description : constructeur fenêtre
+	 * @author : Alice CHEREL Laura SCHAEFER
+	 */
 	public FenAccueil() {
 		this.setTitle("Regate Eole");
-		this.setBounds(0,0, 900, 480); //dimensions de la fenetre
-		this.setLocationRelativeTo(null); //fenetre au centre
-		this.setResizable(false);//non redimensionable
+		//position de la fenêtre
+		this.setBounds(0,0, 900, 480); 
+		//fenetre au centre
+		this.setLocationRelativeTo(null); 
+		//non redimensionable
+		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		getContentPane().setLayout(null);
 		
+		//dimensions de la fenêtre
 		Fen.setPreferredSize(new Dimension(100,20));
 		
 		getContentPane().add(btnNouvelleRgate);
+		//design du bouton
 		btnNouvelleRgate.setForeground(new Color(41,33,104));
 		btnNouvelleRgate.setBackground(new Color(252,252,252));
 		btnNouvelleRgate.setBounds(347, 334, 165, 60);
+		//action du bouton
 		btnNouvelleRgate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FenInscription fI = new FenInscription();
 				fI.setVisible(true);
+				//bloquer le bouton
 				btnNouvelleRgate.setEnabled(false);
+				//change le texte du bouton
 				btnNouvelleRgate.setText("Regate en cours...");
 			}
 		});
-		
+		//logo de la régate
 		lblLogo.setIcon(new ImageIcon(FenAccueil.class.getResource("/Other/Maquette/petitlogo.PNG")));
 		lblLogo.setBounds(10, 11, 231, 96);
 		getContentPane().add(lblLogo);
 	
+		//fond d'écran
 		lblFond.setIcon(new ImageIcon(FenAccueil.class.getResource("/Other/Maquette/regate-voiliers.jpg")));
 		lblFond.setBounds(-117, 10, 1114, 480);
 		getContentPane().add(lblFond);
-	}
-	
-	public static void main(String[] args) {
-		FenAccueil fenetre = new FenAccueil();
-		fenetre.setVisible(true);
 	}
 	
 }
