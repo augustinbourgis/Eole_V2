@@ -132,6 +132,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		getContentPane().add(panGen);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
+		this.setVisible(true);
 	}
 	
 	/**
@@ -409,4 +410,35 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan3Chrono.add(btnReset);
 		this.revalidate();
 	}
+<<<<<<< HEAD
+=======
+	
+	public static void main(String[] args) {
+		//FenChrono f77 = new FenChrono("etst", 14, 2500);
+		//f77.setVisible(true);
+		ArrayList<Voilier> v = new ArrayList<Voilier>();
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Laura", 1, 1, "gol"));
+		v.add(new Voilier("Marine", 1, 1, "bol"));
+		v.add(new Voilier("Alice", 1, 1, "gorge"));
+		v.add(new Voilier("Augustin", 1, 1, "laura"));
+		v.add(new Voilier("Thomas", 1, 1, "gerard"));
+		FenChrono f77 = new FenChrono("etst", 2500, v);
+		f77.setVisible(true);
+	}
+>>>>>>> branch 'master' of https://github.com/augustinbourgis/Eole_V2.git
 }
