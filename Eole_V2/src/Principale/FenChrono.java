@@ -75,6 +75,8 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * @see btnBoucle()
 	 */
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
+		// Image Icon de la frame
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/bateau.png")));
 		// Element pour cree la regate
 		this.nom = nom;
 		this.distance = distance;
@@ -433,5 +435,17 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan3Chrono.add(btnClassement);
 		pan3Chrono.add(btnReset);
 		this.revalidate();
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<Voilier> v = new ArrayList<Voilier>();
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		FenChrono f333 = new FenChrono("DDD", 1000, v);
+		f333.setVisible(true);
 	}
 }
