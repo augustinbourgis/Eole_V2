@@ -58,6 +58,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * L'ArrayList avec toutes les classes
 	 */
 	public FenChoixClassement(Regate r) {
+		// Image Icon de la frame
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
 		setResizable(false);
 		this.r=r;
 		this.classe1=r.classementClasse1;
