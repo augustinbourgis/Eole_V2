@@ -150,17 +150,18 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	public void enteteClassement() {
 		switch(choix) {
 		case 1: case 2:
+			lColonne7 = new JLabel(COLONNE7.toUpperCase());
 			lColonne1 = new JLabel(COLONNE1.toUpperCase());
 			lColonne2 = new JLabel(COLONNE2.toUpperCase());
 			lColonne3 = new JLabel(COLONNE3.toUpperCase());
 			lColonne4 = new JLabel(COLONNE4.toUpperCase());
 			lColonne5 = new JLabel(COLONNE5.toUpperCase());
 			lColonne6 = new JLabel(COLONNE6.toUpperCase());
-			lColonne7 = new JLabel(COLONNE7.toUpperCase());
 			lColonne8 = new JLabel(COLONNE8.toUpperCase());
 			
 			break;
 		case 3:
+			lColonne7 = new JLabel(COLONNE7.toUpperCase());
 			lColonne1 = new JLabel(COLONNE1.toUpperCase());
 			lColonne2 = new JLabel(COLONNE2.toUpperCase());
 			lColonne3 = new JLabel(COLONNE3.toUpperCase());
@@ -239,19 +240,19 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		switch(choix) {
 		case 1: 
 			for(Voilier v : classe1) {
-				panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
+				//panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
+				panelClassement.add(new JLabel(String.valueOf(this.getPlace(v))));
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
 				panelClassement.add(new JLabel(String.valueOf(v.getRating())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsReel())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
-				panelClassement.add(new JLabel(String.valueOf(this.getPlace(v))));
 				panelClassement.add(new JLabel("gen"));
 			}
 			break;
 		case 2: 
 			for(Voilier v : classe2) {
-				panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
+				//panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
 				panelClassement.add(new JLabel(String.valueOf(v.getRating())));
@@ -283,23 +284,23 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	public void addEntete() {
 		switch(choix) {
 		case 1: case 2:
-			panelClassement.add(lColonne1);
+			panelClassement.add(lColonne7);
+			//panelClassement.add(lColonne1);
 			panelClassement.add(lColonne2);
 			panelClassement.add(lColonne3);
 			panelClassement.add(lColonne4);
 			panelClassement.add(lColonne5);
 			panelClassement.add(lColonne6);
-			panelClassement.add(lColonne7);
 			panelClassement.add(lColonne8);
 			break;
 		case 3:
+			panelClassement.add(lColonne8);
 			panelClassement.add(lColonne1);
 			panelClassement.add(lColonne2);
 			panelClassement.add(lColonne3);
 			panelClassement.add(lColonne4);
 			panelClassement.add(lColonne5);
 			panelClassement.add(lColonne6);
-			panelClassement.add(lColonne8);
 		}
 	}
 	
@@ -312,7 +313,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		updateNbCases();
 		switch (choix) {
 		case 1: case 2:
-			panelClassement.setLayout(new GridLayout(nbCases,8));
+			panelClassement.setLayout(new GridLayout(nbCases,7));
 			break;
 		default:
 			panelClassement.setLayout(new GridLayout(nbCases,7));

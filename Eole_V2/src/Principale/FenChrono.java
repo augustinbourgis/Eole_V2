@@ -74,19 +74,29 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * @see btnBoucle()
 	 */
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
+		// Image Icon de la frame
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/bateau.png")));
+		// Element pour cree la regate
 		this.nom = nom;
 		this.distance = distance;
 		this.lesParticipants = participants;
 		laRegate = new Regate(nom, lesParticipants.size() , distance);
 		arrive = lesParticipants.size();
+		
+		// nom fenetre
 		setTitle("Course");
-		setPreferredSize(new Dimension(1100, 730));
+		//Taille fenetre
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setPreferredSize(new Dimension((int)dimension.getWidth(), (int)dimension.getHeight()));
+		// Redimension desactive
 		setResizable(false);
+		// Panel Generale
 		JPanel panGen = new JPanel(new BorderLayout());
+		// Dimension BtnClassement
 		btnClassement.setPreferredSize(new Dimension(200, 35));
+		// Couleur de fond panel Regate
 		panReg.setBackground(new Color(207, 235, 255));
+		// Definition des JLabels du chrono
 		lblh.setText("00");
 		lblh.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lblMin.setText("00");
@@ -97,7 +107,9 @@ public class FenChrono extends JFrame implements ActionListener{
 		lbl1.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lbl2.setText(":");
 		lbl2.setFont(new Font("Lucida Grande", Font.BOLD, 40));
-		JPanel pan1Chrono = new JPanel(new GridLayout(2, 1));
+		
+		// Gestion du Chrono
+		JPanel panChronoGen = new JPanel(new GridLayout(2, 1));
 		JPanel pan2Chrono = new JPanel();
 		pan2Chrono.setBackground(new Color(207, 235, 255));
 		
@@ -117,18 +129,27 @@ public class FenChrono extends JFrame implements ActionListener{
 		pan3Chrono.add(btnStop);
 		pan3Chrono.add(btnReset);
 		
-		pan1Chrono.add(pan2Chrono);
-		pan1Chrono.add(pan3Chrono);
+		panChronoGen.add(pan2Chrono);
+		panChronoGen.add(pan3Chrono);
 		
-		Chrono.add(pan1Chrono);
+		Chrono.add(panChronoGen);
+		//Ajout du Chrono dans le panel General en haut
 		panGen.add(Chrono, BorderLayout.NORTH);
+		
+		// Permet de generer tout les Voiliers dans la fenetre
 		btnBoucle();
+		
+		// Ajoute les action au JButton du chrono
 		btnStart.addActionListener(this);
 		btnStop.addActionListener(this);
 		btnReset.addActionListener(this);
 		btnClassement.addActionListener(this);
+		
+		// Ajoute le panel de la regate au centrale
 		panGen.add(panReg);
+		// Ajoute le panel general au panel par default
 		getContentPane().add(panGen);
+		// Definis laction de fermeture par default
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 	}
@@ -169,6 +190,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		        pan3Chrono.add(btnStop);
 		        pan3Chrono.add(btnReset);
 		        arrive = lesParticipants.size();
+		        // Regenere les Voiliers
 		        btnBoucle();
 		        // Actualisation de la frame
 		        this.revalidate();
@@ -178,16 +200,20 @@ public class FenChrono extends JFrame implements ActionListener{
 		if(e.getSource() == btnClassement) {
 			// Ajoute les voiliers qui ont abandonné à la fin du classement 
 			for(Voilier v : ArrAbandon) {
+				// Ajoute au classement Generale
 				laRegate.classementGene.add(v);
 				if(v.getClasse() == 1) {
+					// Ajoute au classement de la Classe 1
 					laRegate.classementClasse1.add(v);
 				} else {
+					// Ajoute au classement de la Classe 2
 					laRegate.classementClasse2.add(v);
 				}
 			}
 			// Ouvre la fenetre FenChoixClassement et ferme la fenChrono
 			FenChoixClassement Fcc = new FenChoixClassement(laRegate);
 			Fcc.setVisible(true);
+			// ferme la fenetre courante
 			this.setVisible(false);
 			this.dispose();
 		}
@@ -269,6 +295,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	 * @author Thomas DURST
 	 */
 	public void btnBoucle() {
+		// Enleve tout les composants du panel regate si il y a des composants
 		panReg.removeAll();
 		int indiceVoilier = 1;
 		for(Voilier p : lesParticipants) {
@@ -411,27 +438,13 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Laura", 1, 1, "gol"));
-		v.add(new Voilier("Marine", 1, 1, "bol"));
-		v.add(new Voilier("Alice", 1, 1, "gorge"));
-		v.add(new Voilier("Augustin", 1, 1, "laura"));
-		v.add(new Voilier("Thomas", 1, 1, "gerard"));
-		FenChrono f77 = new FenChrono("etst", 2500, v);
-		f77.setVisible(true);
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		FenChrono f333 = new FenChrono("DDD", 1000, v);
+		f333.setVisible(true);
 	}
 }
