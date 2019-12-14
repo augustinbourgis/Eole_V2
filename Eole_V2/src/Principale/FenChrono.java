@@ -75,7 +75,7 @@ public class FenChrono extends JFrame implements ActionListener{
 	 */
 	public FenChrono(String nom, int distance, ArrayList<Voilier> participants) {
 		// Image Icon de la frame
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/bateau.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
 		// Element pour cree la regate
 		this.nom = nom;
 		this.distance = distance;

@@ -30,6 +30,8 @@ public class FenAccueil extends JFrame{
 	 * @author : Alice CHEREL Laura SCHAEFER
 	 */
 	public FenAccueil() {
+		// Image Icon de la frame
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
 		this.setTitle("Regate Eole");
 		//position de la fenêtre
 		this.setBounds(0,0, 900, 480); 
