@@ -47,7 +47,6 @@ public class FenChrono extends JFrame implements ActionListener{
 	URL urlImage = getClass().getResource("/Other/Maquette/undo.png");
 	Icon icone = new ImageIcon(new ImageIcon(urlImage).getImage().getScaledInstance(18, 18, Image.SCALE_DEFAULT));
 	
-	
 	/**
 	 * JFrame global element
 	 */
