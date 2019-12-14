@@ -26,7 +26,7 @@ public class Voilier {
 	 */
 	
 	public String toString() {
-		return nom + "CLASSE : " + classe;
+		return nom + " CLASSE : " + classe;
 	}
 	/**
 	 * Getter de NOM

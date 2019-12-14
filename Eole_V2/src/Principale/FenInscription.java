@@ -77,7 +77,8 @@ public class FenInscription extends JFrame implements ActionListener {
 	 * @author Marine & Laura
 	 */
 	public FenInscription() {
-
+		// Image Icon de la frame
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
 		this.setTitle("Fenetre Inscription");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1100, 480);
@@ -124,13 +125,13 @@ public class FenInscription extends JFrame implements ActionListener {
 		panelGauche.add(txtNumeroVoilier);
 		panelGauche.add(lNomVoilier);
 		panelGauche.add(txtNomVoilier);
+		panelGauche.add(lNomSkipper);
+		panelGauche.add(txtNomSkipper);
 		panelGauche.add(lClasse);
 		panelGauche.add(txtClasse);
 		panelGauche.add(lRating);
 		panelGauche.add(txtRating);
-		panelGauche.add(lNomSkipper);
-		panelGauche.add(txtNomSkipper);
-		
+
 				// ---- style des éléments ---- //		
 		lTitreParticipant.setHorizontalAlignment(SwingConstants.CENTER);
 		lTitreParticipant.setBounds(133, 149, 271, 34);
@@ -146,20 +147,20 @@ public class FenInscription extends JFrame implements ActionListener {
 		
 		txtNomVoilier.setBounds(207, 217, 208, 20);
 		
-		lClasse.setBounds(0, 232, 190, 34);
+		lClasse.setBounds(0, 255, 190, 34);
 		lClasse.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		txtClasse.setBounds(207, 239, 208, 20);
+		txtClasse.setBounds(207, 262, 208, 20);
 		
-		lRating.setBounds(0, 255, 190, 34);
+		lRating.setBounds(0, 277, 190, 34);
 		lRating.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		txtRating.setBounds(207, 262, 208, 20);
+		txtRating.setBounds(207, 284, 208, 20);
 		
-		lNomSkipper.setBounds(0, 277, 190, 34);
+		lNomSkipper.setBounds(0, 232, 190, 34);
 		lNomSkipper.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		txtNomSkipper.setBounds(207, 284, 208, 20);
+		txtNomSkipper.setBounds(207, 239, 208, 20);
 		
 			// ---- Boutons ---- //
 		panelGauche.add(btnAjouterListe);
@@ -193,7 +194,7 @@ public class FenInscription extends JFrame implements ActionListener {
 		btnSupprimer.setBounds(395, 18, 105, 21);
 		btnSupprimer.addActionListener(this);
 		
-		list.setBounds(108, 62, 333, 378);
+		list.setBounds(108, 62, 392, 378);
 		list.setBackground(new Color(207, 235, 255));
 	
 		this.getContentPane().add(panelGen, "Center");
@@ -225,24 +226,28 @@ public class FenInscription extends JFrame implements ActionListener {
 		if(e.getSource()==btnAjouterListe) {
 			if(temp==20) {
 				JOptionPane.showMessageDialog(this, "Vous ne pouvez pas ajouter plus de 20 participants");
-			}else if(!txtClasse.getText().equals("1") && !txtClasse.getText().equals("2")) {
+			} else if(txtClasse.getText().equals("") || txtNomSkipper.getText().equals("") || txtNomVoilier.getText().equals("") || txtNumeroVoilier.getText().equals("") || txtRating.getText().equals("")) {
+				JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas ete remplies");
+			} else if(!txtClasse.getText().equals("1") && !txtClasse.getText().equals("2")) {
 				JOptionPane.showMessageDialog(this, "La classe doit être égale à 1 ou 2");
-			}else {
-				try {
+			}else if(txtClasse.getText() != "" || txtNomSkipper.getText() != "" || txtNomVoilier.getText() != "" || txtNumeroVoilier.getText() != "" || txtRating.getText() != ""){
 					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
 					
-					modele.addElement(txtNomVoilier.getText()+" / "+txtNomSkipper.getText());
+					modele.addElement("Nom voilier : " + txtNomVoilier.getText()+" | Skipper : "+txtNomSkipper.getText() +" | Class : "+ txtClasse.getText()+ " | Rating : "+ txtRating.getText());
 					list.setModel(modele);
 					
 					SwingUtilities.updateComponentTreeUI(this);
 					temp++;
-				}catch(NumberFormatException err) {
-					JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas ete remplies");
-				}
+					txtClasse.setText("");
+					txtNomSkipper.setText("");
+					txtNomVoilier.setText("");
+					txtRating.setText("");
+					txtNumeroVoilier.setText("");
 			}
 		}else if(e.getSource()==btnDemarrerRegate) {
 			try {
-				new FenChrono(txtNomRegate.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
+				FenChrono f = new FenChrono(txtNomRegate.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
+				f.setVisible(true);
 				this.dispose();
 			}catch(Exception err) {
 				err.printStackTrace();
@@ -255,6 +260,7 @@ public class FenInscription extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Vous devez selectionner un participant pour le supprimer", "Information", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				modele.remove(index);
+				lesVoiliersInscrits.remove(index);
 				list.revalidate();
 				temp--;
 			}
