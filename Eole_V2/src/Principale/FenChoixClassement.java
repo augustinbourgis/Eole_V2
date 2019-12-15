@@ -247,7 +247,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
 				panelClassement.add(new JLabel(String.valueOf(v.getRating())));
-				panelClassement.add(new JLabel(String.valueOf(v.getTempsReel())));
+				panelClassement.add(new JLabel(String.valueOf(v.getTempsHMS())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
 				panelClassement.add(new JLabel("gen"));
 			}
@@ -255,12 +255,12 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		case 2: 
 			for(Voilier v : classe2) {
 				//panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
+				panelClassement.add(new JLabel(String.valueOf(this.getPlace(v))));
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
 				panelClassement.add(new JLabel(String.valueOf(v.getRating())));
-				panelClassement.add(new JLabel(String.valueOf(v.getTempsReel())));
+				panelClassement.add(new JLabel(String.valueOf(v.getTempsHMS())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
-				panelClassement.add(new JLabel("j"));
 				panelClassement.add(new JLabel("gen"));
 			}
 			break;
@@ -270,9 +270,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
 				panelClassement.add(new JLabel(String.valueOf(v.getRating())));
-				panelClassement.add(new JLabel(String.valueOf(v.getTempsReel())));
+				panelClassement.add(new JLabel(String.valueOf(v.getTempsHMS())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
-				panelClassement.add(new JLabel("gen"));
 			}
 			break;
 		}

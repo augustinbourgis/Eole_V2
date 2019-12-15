@@ -231,7 +231,7 @@ public class FenInscription extends JFrame implements ActionListener {
 			} else if(!txtClasse.getText().equals("1") && !txtClasse.getText().equals("2")) {
 				JOptionPane.showMessageDialog(this, "La classe doit être égale à 1 ou 2");
 			}else if(txtClasse.getText() != "" || txtNomSkipper.getText() != "" || txtNomVoilier.getText() != "" || txtNumeroVoilier.getText() != "" || txtRating.getText() != ""){
-					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
+					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtRating.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
 					
 					modele.addElement("Nom voilier : " + txtNomVoilier.getText()+" | Skipper : "+txtNomSkipper.getText() +" | Class : "+ txtClasse.getText()+ " | Rating : "+ txtRating.getText());
 					list.setModel(modele);

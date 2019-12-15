@@ -185,9 +185,10 @@ public class Voilier {
 	 * @param classe
 	 * @author Augustin et Wizard
 	 */
-	public Voilier(String nomVoilier, int classe, int num, String nomSkipper) {
+	public Voilier(String nomVoilier, int classe, int rating, int num, String nomSkipper) {
 		this.nom = nomVoilier;
 		this.classe = classe;
+		this.rating = rating;
 		this.num=num;
 		this.abandon=false;
 		this.skipper=new Skipper(nomSkipper);
@@ -207,7 +208,7 @@ public class Voilier {
 	 * @author Augustin et Wizard
 	 */
 	public void conversionHMS(int dureeEnSec) {
-		int heures = (int) (dureeEnSec/3600);
+		int heures = (int) (dureeEnSec / 3600);
 		int minutes = (int) (dureeEnSec - (heures * 60));
 		int secondes = (int) (dureeEnSec - (minutes * 60 + heures * 60));
 		String H = heures < 10 ? "0" + heures : "" + heures;

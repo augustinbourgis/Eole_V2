@@ -339,7 +339,6 @@ public class FenChrono extends JFrame implements ActionListener{
 						arrive--;
 						tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
 						p.setTempsReel(tempsSec);
-						p.setTempsHMS(tempsHMS);
 						p.calculeCompense(distance);
 						laRegate.classementGene.add(p);
 						if(p.getClasse() == 1) {
@@ -378,7 +377,6 @@ public class FenChrono extends JFrame implements ActionListener{
 					tempsSec = getTempsReelSec(tempsHMS.substring(0,2), tempsHMS.substring(5,7), tempsHMS.substring(10));
 					p.setTempsReel(tempsSec);
 					p.abandon();
-					p.setTempsHMS(tempsHMS);
 					ArrAbandon.add(p);
 				}
 			});
@@ -441,12 +439,12 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
 		FenChrono f333 = new FenChrono("DDD", 1000, v);
 		f333.setVisible(true);
 	}
