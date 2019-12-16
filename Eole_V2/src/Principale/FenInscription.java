@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- * Description : fenêtre inscription
+ * Description : fenï¿½tre inscription
  * @author : Marine CHRISTOPHE
  * @version 1.0
  */
@@ -63,7 +63,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	JTextField txtRating = new JTextField("");
 	JTextField txtNomSkipper = new JTextField("");
 	
-	JButton btnAjouterListe = new JButton("Ajouter à la liste");
+	JButton btnAjouterListe = new JButton("Ajouter ï¿½ la liste");
 
 	// ---- panel liste participant sur la droite---//
 	JPanel panelListeParticipants = new JPanel();
@@ -73,7 +73,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	DefaultListModel modele = new DefaultListModel();
 	
 	/**
-	 * Description : constructeur fenêtre
+	 * Description : constructeur fenï¿½tre
 	 * @author Marine & Laura
 	 */
 	public FenInscription() {
@@ -103,7 +103,7 @@ public class FenInscription extends JFrame implements ActionListener {
 		panelGauche.add(lDistance);
 		panelGauche.add(txtDistance);
 		
-				// ---- style des éléments ---- //
+				// ---- style des ï¿½lï¿½ments ---- //
 		lTitreParcours.setHorizontalAlignment(SwingConstants.CENTER);
 		lTitreParcours.setBounds(133, 23, 271, 34);
 		lTitreParcours.setForeground(new Color(0, 118, 197));
@@ -132,7 +132,7 @@ public class FenInscription extends JFrame implements ActionListener {
 		panelGauche.add(lRating);
 		panelGauche.add(txtRating);
 
-				// ---- style des éléments ---- //		
+				// ---- style des ï¿½lï¿½ments ---- //		
 		lTitreParticipant.setHorizontalAlignment(SwingConstants.CENTER);
 		lTitreParticipant.setBounds(133, 149, 271, 34);
 		lTitreParticipant.setForeground(new Color(0, 118, 197));
@@ -229,7 +229,7 @@ public class FenInscription extends JFrame implements ActionListener {
 			} else if(txtClasse.getText().equals("") || txtNomSkipper.getText().equals("") || txtNomVoilier.getText().equals("") || txtNumeroVoilier.getText().equals("") || txtRating.getText().equals("")) {
 				JOptionPane.showMessageDialog(this, "Toutes les informations du participants n'ont pas ete remplies");
 			} else if(!txtClasse.getText().equals("1") && !txtClasse.getText().equals("2")) {
-				JOptionPane.showMessageDialog(this, "La classe doit être égale à 1 ou 2");
+				JOptionPane.showMessageDialog(this, "La classe doit ï¿½tre ï¿½gale ï¿½ 1 ou 2");
 			}else if(txtClasse.getText() != "" || txtNomSkipper.getText() != "" || txtNomVoilier.getText() != "" || txtNumeroVoilier.getText() != "" || txtRating.getText() != ""){
 					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtRating.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
 					
@@ -245,13 +245,12 @@ public class FenInscription extends JFrame implements ActionListener {
 					txtNumeroVoilier.setText("");
 			}
 		}else if(e.getSource()==btnDemarrerRegate) {
-			try {
+			if(!txtNomRegate.getText().equals("") || !txtDistance.getText().equals("") || !lesVoiliersInscrits.isEmpty()) {
+				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas ete remplies");
+			} else {
 				FenChrono f = new FenChrono(txtNomRegate.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
 				f.setVisible(true);
 				this.dispose();
-			}catch(Exception err) {
-				err.printStackTrace();
-				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas ete remplies");
 			}
 		}
 		else if(e.getSource()==btnSupprimer) {
