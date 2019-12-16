@@ -109,6 +109,15 @@ public class FenChrono extends JFrame implements ActionListener{
 		lbl1.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		lbl2.setText(":");
 		lbl2.setFont(new Font("Lucida Grande", Font.BOLD, 40));
+		//Design des boutons
+		btnClassement.setBackground(new Color(0, 74, 124));
+		btnClassement.setForeground(new Color(252, 252, 252));
+		btnReset.setBackground(new Color(0, 74, 124));
+		btnReset.setForeground(new Color(252, 252, 252));
+		btnStart.setBackground(new Color(0, 74, 124));
+		btnStart.setForeground(new Color(252, 252, 252));
+		btnStop.setBackground(new Color(0, 74, 124));
+		btnStop.setForeground(new Color(252, 252, 252));
 		
 		// Gestion du Chrono
 		JPanel panChronoGen = new JPanel(new GridLayout(2, 1));
@@ -186,7 +195,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		// Action du btnReset
 		if(e.getSource() == btnReset) {
 			// Demande confirmation du redémarage
-			int validation = JOptionPane.showConfirmDialog(this, "Voulez - vous red�marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			int validation = JOptionPane.showConfirmDialog(this, "Voulez - vous redemarrer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
 			// Si la confirmation est oui alors validation != 1
 			if(validation != 1) {
 				// Arret du chrono et remise à 0 du chrono visuel
@@ -313,13 +322,17 @@ public class FenChrono extends JFrame implements ActionListener{
 		int indiceVoilier = 1;
 		for(Voilier p : lesParticipants) {
 			JPanel b = new JPanel();
-			JButton btnundo = new JButton(icone);
 			b.setBackground(new Color(207, 235, 255));
+			JButton btnundo = new JButton(icone);
 			JLabel lblNom = new JLabel(indiceVoilier + " | " + p.getNom());
 			lblNom.setPreferredSize(new Dimension(250, 35));
 			lblNom.setFont(new Font("Lucida Gande", Font.PLAIN, 20));
-			JButton btnArrivee = new JButton("Arriv�e");
+			JButton btnArrivee = new JButton("Arrivee");
 			JButton btnAbandon = new JButton("Abandon");
+			btnArrivee.setBackground(new Color(0, 74, 124));
+			btnArrivee.setForeground(new Color(252, 252, 252));
+			btnAbandon.setBackground(new Color(0, 74, 124));
+			btnAbandon.setForeground(new Color(252, 252, 252));
 			JLabel espaceG = new JLabel();
 			JLabel espaceD = new JLabel();
 			JLabel tempsJLabel = new JLabel();
@@ -360,7 +373,7 @@ public class FenChrono extends JFrame implements ActionListener{
 							laRegate.classementClasse2.add(p);
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas démarré", "Information", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Action impossible le chrono n'est pas demarre", "Information", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			});
