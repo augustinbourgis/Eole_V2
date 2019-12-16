@@ -4,11 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,10 +27,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private static final String COLONNE2 = "Voilier";
 	private static final String COLONNE3 = "Nom skipper";
 	private static final String COLONNE4 = "Ratting";
-	private static final String COLONNE5 = "Tps r�el";
-	private static final String COLONNE6 = "Tps compos�";
+	private static final String COLONNE5 = "Tps reel";
+	private static final String COLONNE6 = "Tps composee";
 	private static final String COLONNE7 = "Class. classe";
-	private static final String COLONNE8 = "Class. G�n�ral";
+	private static final String COLONNE8 = "Class. General";
 	
 	private ArrayList<Voilier> classe1 = new ArrayList<Voilier>(); //ArrayList de la classe 1
 	private ArrayList<Voilier> classe2 = new ArrayList<Voilier>();	//ArrayList de la classe 2
@@ -49,7 +54,8 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JButton btnClassement1 = new JButton("Obtenir palmar�s classe 1");
 	private JButton btnClassement2 = new JButton("Obtenir palmar�s classe 2");
 	private JButton btnClassementTotal = new JButton("Obtenir palmar�s g�n�ral");
-	
+	private JButton btnExport = new JButton("Exporter");
+	final JFileChooser fc = new JFileChooser();
 
 //-------------------------- Constructeurs --------------------------//
 	/**
@@ -81,9 +87,12 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		btnClassement2.setBackground(new Color(0,74,124));
 		btnClassement2.setForeground(new Color(252,252,252));
 		btnClassementTotal.addActionListener(this);
-		btnClassementTotal.addActionListener(this);
 		btnClassementTotal.setBackground(new Color(0,74,124));
 		btnClassementTotal.setForeground(new Color(252,252,252));
+		btnExport.addActionListener(this);
+		btnExport.setBackground(new Color(0,74,124));
+		btnExport.setForeground(new Color(252,252,252));
+		btnExport.setEnabled(false);
 		panelGeneral.setLayout(null);
 		panelGeneral.setBackground(new Color(207,235,255));
 		panelBoutons.setBounds(0, 0, 1084, 41);
@@ -154,6 +163,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		panelBoutons.add(btnClassement1);
 		panelBoutons.add(btnClassement2);
 		panelBoutons.add(btnClassementTotal);
+		panelBoutons.add(btnExport);
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
 		panelBoutons.add(new JLabel());
@@ -345,23 +355,90 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btnClassement1) {
 			choix=1;
+			btnExport.setEnabled(true);
 			panelClassement.removeAll();
 			chargementClassement();
 			SwingUtilities.updateComponentTreeUI(this);
 		}else if (e.getSource()==btnClassement2) {
 			choix=2;
+			btnExport.setEnabled(true);
 			panelClassement.removeAll();
 			chargementClassement();
 			SwingUtilities.updateComponentTreeUI(this);
 		}else if(e.getSource()==btnClassementTotal){
 			choix=3;
+			btnExport.setEnabled(true);
 			panelClassement.removeAll();
 			chargementClassement();
 			SwingUtilities.updateComponentTreeUI(this);
+		} else if(e.getSource() == btnExport) {
+			print();
 		}
-		
 	}
 
+	public void print() {
+		switch(choix) {
+		case 1:
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
+			break;
+		case 2:
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
+			break;
+		case 3:
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
+			break;
+		}
+		
+		int val_retour = fc.showSaveDialog(this);
+		
+		if (val_retour == JFileChooser.APPROVE_OPTION) {
+			double distanceKm = r.getDistance() * 1.609;
+            File fichier = fc.getSelectedFile();
+            String chemin = fichier.getAbsolutePath();
+            //afficher le chemin absolu du fichier
+            System.out.println("Chemin absolu : "+chemin+"\n");
+            try {
+				fichier.createNewFile();
+				switch(choix) {
+    			case 1:
+    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
+    				PrintWriter fl = new PrintWriter(fichier);
+					fl.println("Regate : " + r.getNum());
+					fl.println("Nombre de participants : " + classe1.size());
+					fl.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
+					fl.println("___________________________________________________________________________________________");
+					fl.println("\n");
+					fl.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
+					for(Voilier v : classe1) {
+						fl.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
+					}
+					fl.close();
+    				break;
+    			case 2:
+    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
+    				PrintWriter f2 = new PrintWriter(fichier);
+					f2.println("Regate : " + r.getNum());
+					f2.println("Nombre de participants : " + classe1.size());
+					f2.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
+					f2.println("___________________________________________________________________________________________");
+					f2.println("\n");
+					f2.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
+					for(Voilier v : classe2) {
+						f2.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
+					}
+					f2.close();
+    				break;
+    			case 3:
+    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
+    				break;
+    			}
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		new FenChoixClassement(new Regate("test", 10, 400));
