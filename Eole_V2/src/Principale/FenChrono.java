@@ -86,7 +86,7 @@ public class FenChrono extends JFrame implements ActionListener{
 		arrive = lesParticipants.size();
 		
 		// nom fenetre
-		setTitle("Course");
+		setTitle("Course : " + nom);
 		//Taille fenetre
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setPreferredSize(new Dimension((int)dimension.getWidth(), (int)dimension.getHeight()));

@@ -63,16 +63,22 @@ public class Regate {
 	public void setNbParticipants(int nbParticipants) {
 		this.nbParticipants = nbParticipants;
 	}
-
+	
+	/**
+	 * Getter Num
+	 * Retourne le nom de la regate
+	 * @return num
+	 */
+	public String getNum() {
+		return num;
+	}
+	
 	
 //-------------------------- Fin Getters/Setters --------------------------//
 	
-	
-	
-	
-	
 
-//-------------------------- Constructeurs --------------------------//
+
+	//-------------------------- Constructeurs --------------------------//
 	/**
 	 * @param nom
 	 * @param distance
