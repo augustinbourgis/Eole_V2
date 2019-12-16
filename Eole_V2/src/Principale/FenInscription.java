@@ -233,7 +233,7 @@ public class FenInscription extends JFrame implements ActionListener {
 			}else if(txtClasse.getText() != "" || txtNomSkipper.getText() != "" || txtNomVoilier.getText() != "" || txtNumeroVoilier.getText() != "" || txtRating.getText() != ""){
 					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtRating.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
 					
-					modele.addElement("Nom voilier : " + txtNomVoilier.getText()+" | Skipper : "+txtNomSkipper.getText() +" | Class : "+ txtClasse.getText()+ " | Rating : "+ txtRating.getText());
+					modele.addElement("Nom voilier : " + txtNomVoilier.getText()+" | Skipper : "+txtNomSkipper.getText() +" | Classe : "+ txtClasse.getText()+ " | Rating : "+ txtRating.getText());
 					list.setModel(modele);
 					
 					SwingUtilities.updateComponentTreeUI(this);

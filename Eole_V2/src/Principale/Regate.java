@@ -291,6 +291,17 @@ public class Regate {
 		return liste;
 	}
 	
+	public int getPlaceDansClassementGeneral(Voilier v) {
+		int place = 1;
+		for(Voilier voilier : classementGene) {
+			if(voilier==v) {
+				return place;
+			}
+			place++;
+		}
+		return 0;
+	}
+	
 	
 	
 	/**
