@@ -245,7 +245,7 @@ public class FenInscription extends JFrame implements ActionListener {
 					txtNumeroVoilier.setText("");
 			}
 		}else if(e.getSource()==btnDemarrerRegate) {
-			if(!txtNomRegate.getText().equals("") || !txtDistance.getText().equals("") || !lesVoiliersInscrits.isEmpty()) {
+			if(txtNomRegate.getText().equals("") || txtDistance.getText().equals("") || lesVoiliersInscrits.isEmpty()) {
 				JOptionPane.showMessageDialog(this,"Toutes les informations de la regate n'ont pas ete remplies");
 			} else {
 				FenChrono f = new FenChrono(txtNomRegate.getText(),Integer.valueOf(txtDistance.getText()),lesVoiliersInscrits);
