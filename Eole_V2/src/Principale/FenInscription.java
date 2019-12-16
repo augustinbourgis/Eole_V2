@@ -80,7 +80,7 @@ public class FenInscription extends JFrame implements ActionListener {
 		// Image Icon de la frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
 		this.setTitle("Fenetre Inscription");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -198,6 +198,18 @@ public class FenInscription extends JFrame implements ActionListener {
 		list.setBackground(new Color(207, 235, 255));
 	
 		this.getContentPane().add(panelGen, "Center");
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				 if(reponse == JOptionPane.YES_OPTION) {
+					 FenAccueil.btnNouvelleRgate.setEnabled(true);
+					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Regate");
+					 dispose();
+				 }
+			}
+		});
+		
 //		addLabelAjoutListe();
 	}
 	

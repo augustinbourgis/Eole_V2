@@ -2,6 +2,8 @@ package Principale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -68,7 +71,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		this.classe2=r.classementClasse2;
 		this.classeGen=r.classementGene;
 		this.setTitle("Choix classement");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		btnClassement1.addActionListener(this);
@@ -108,6 +111,17 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		this.getContentPane().add(panelGeneral,"Center");
 		ajoutBoutons();
 		this.setVisible(true);
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				 if(reponse == JOptionPane.YES_OPTION) {
+					 FenAccueil.btnNouvelleRgate.setEnabled(true);
+					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Regate");
+					 dispose();
+				 }
+			}
+		});
 	}
 	
 	
@@ -252,7 +266,6 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsHMS())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
 				panelClassement.add(new JLabel(String.valueOf(r.getPlaceDansClassementGeneral(v))));
-				panelClassement.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 			}
 			break;
 		case 2: 

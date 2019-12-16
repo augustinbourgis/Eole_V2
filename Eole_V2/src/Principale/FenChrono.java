@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -150,8 +152,19 @@ public class FenChrono extends JFrame implements ActionListener{
 		// Ajoute le panel general au panel par default
 		getContentPane().add(panGen);
 		// Definis laction de fermeture par default
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		pack();
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				 if(reponse == JOptionPane.YES_OPTION) {
+					 FenAccueil.btnNouvelleRgate.setEnabled(true);
+					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Regate");
+					 dispose();
+				 }
+			}
+		});
 	}
 	
 	/**

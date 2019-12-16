@@ -19,7 +19,7 @@ public class FenAccueil extends JFrame{
 	 * Description : variables de la classe FenAccueil
 	 */
 	JPanel Fen = new JPanel();
-	JButton btnNouvelleRgate = new JButton("Nouvelle Regate");
+	static JButton btnNouvelleRgate = new JButton("Nouvelle Regate");
 	//JLabel qui sert de Logo
 	JLabel lblLogo = new JLabel(""); 
 	//JLabel qui sert d'image de fond
