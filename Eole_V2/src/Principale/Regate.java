@@ -291,6 +291,15 @@ public class Regate {
 		return liste;
 	}
 	
+	
+	/**
+	 * @author Augustin
+	 * Permet d'obtenir la place du voilier dans le classement général
+	 * @param v
+	 * le voilier
+	 * @return
+	 * la place du voilier
+	 */
 	public int getPlaceDansClassementGeneral(Voilier v) {
 		int place = 1;
 		for(Voilier voilier : classementGene) {
