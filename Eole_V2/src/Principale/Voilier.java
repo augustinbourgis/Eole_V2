@@ -207,14 +207,14 @@ public class Voilier {
 	 * La durée à convertir
 	 * @author Augustin et Wizard
 	 */
-	public void conversionHMS(int dureeEnSec) {
-		int heures = (int) (dureeEnSec / 3600);
-		int minutes = (int) (dureeEnSec - (heures * 60));
-		int secondes = (int) (dureeEnSec - (minutes * 60 + heures * 60));
+	public String conversionHMS(int dureeEnSec) {
+		int heures = (int) (dureeEnSec/3600);
+		int minutes = (int) (dureeEnSec-heures*3600)/60;
+		int secondes = (int) (dureeEnSec - (minutes * 60 + heures * 3600));
 		String H = heures < 10 ? "0" + heures : "" + heures;
 		String M = minutes < 10 ? "0" + minutes : "" + minutes;
 		String S = secondes < 10 ? "0" + secondes : "" + secondes;
-		tempsHMS = H + ":" + M + ":" + S;
+		return tempsHMS = H + ":" + M + ":" + S;
 	}
 	
 	
