@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -250,6 +252,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsHMS())));
 				panelClassement.add(new JLabel(String.valueOf(v.getTempsCompense())));
 				panelClassement.add(new JLabel("gen"));
+				panelClassement.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 			}
 			break;
 		case 2: 
@@ -266,6 +269,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 			break;
 		case 3: 
 			for(Voilier v : classeGen) {
+				panelClassement.add(new JLabel(String.valueOf(this.getPlace(v))));
 				panelClassement.add(new JLabel(String.valueOf(v.getClasse())));
 				panelClassement.add(new JLabel(v.getNom()));
 				panelClassement.add(new JLabel(v.skipper.getNom()));
