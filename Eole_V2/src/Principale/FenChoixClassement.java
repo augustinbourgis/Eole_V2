@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -19,6 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
@@ -401,18 +409,44 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				fichier.createNewFile();
 				switch(choix) {
     			case 1:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
-    				PrintWriter fl = new PrintWriter(fichier);
-					fl.println("Regate : " + r.getNum());
-					fl.println("Nombre de participants : " + classe1.size());
-					fl.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
-					fl.println("___________________________________________________________________________________________");
-					fl.println("\n");
-					fl.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
-					for(Voilier v : classe1) {
-						fl.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
-					}
-					fl.close();
+    				Document doc = new Document(PageSize.A4);
+    				try {
+    					PdfWriter.getInstance(doc, new FileOutputStream(fichier));
+    					doc.open();
+    					doc.add(new Paragraph("Regate : " + r.getNum()));
+    					doc.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc.add(new Paragraph("______________________________________________________________________________"));
+    					doc.add(new Paragraph("\n"));
+    					doc.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					PdfPCell cell;    
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    
+    					doc.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc.close();
+    				
+//    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
+//    				PrintWriter fl = new PrintWriter(fichier);
+//					fl.println("Regate : " + r.getNum());
+//					fl.println("Nombre de participants : " + classe1.size());
+//					fl.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
+//					fl.println("___________________________________________________________________________________________");
+//					fl.println("\n");
+//					fl.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
+//					for(Voilier v : classe1) {
+//						fl.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
+//					}
+//					fl.close();
     				break;
     			case 2:
     				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
