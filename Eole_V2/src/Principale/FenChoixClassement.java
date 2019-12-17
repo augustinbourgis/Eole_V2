@@ -419,7 +419,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     				PrintWriter f2 = new PrintWriter(fichier);
 					f2.println("Regate : " + r.getNum());
 					f2.println("Nombre de participants : " + classe1.size());
-					f2.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
+					f2.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
 					f2.println("___________________________________________________________________________________________");
 					f2.println("\n");
 					f2.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
