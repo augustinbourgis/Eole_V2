@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -410,72 +411,113 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				fichier.createNewFile();
 				switch(choix) {
     			case 1:
-    				Document doc = new Document(PageSize.A1);
+    				Document doc = new Document(PageSize.A4.rotate());
     				try {
     					PdfWriter.getInstance(doc, new FileOutputStream(fichier));
     					doc.open();
     					doc.add(new Paragraph("Regate : " + r.getNum()));
     					doc.add(new Paragraph("Nombre de participants : " + classe1.size()));
     					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
-    					doc.add(new Paragraph("______________________________________________________________________________"));
     					doc.add(new Paragraph("\n"));
     					doc.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
-    					PdfPCell cell;    
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
     				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
-    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    for(Voilier v : classe1) {
+    				    	table.addCell(String.valueOf(this.getPlace(v)));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    					}
     				    
     					doc.add(table);
     				} catch(Exception e) {
     					e.getMessage();
     				}
     				doc.close();
-    				
-//    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
-//    				PrintWriter fl = new PrintWriter(fichier);
-//					fl.println("Regate : " + r.getNum());
-//					fl.println("Nombre de participants : " + classe1.size());
-//					fl.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
-//					fl.println("___________________________________________________________________________________________");
-//					fl.println("\n");
-//					fl.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
-//					for(Voilier v : classe1) {
-//						fl.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
-//					}
-//					fl.close();
     				break;
     			case 2:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
-    				PrintWriter f2 = new PrintWriter(fichier);
-					f2.println("Regate : " + r.getNum());
-					f2.println("Nombre de participants : " + classe1.size());
-					f2.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
-					f2.println("___________________________________________________________________________________________");
-					f2.println("\n");
-					f2.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
-					for(Voilier v : classe2) {
-						f2.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
-					}
-					f2.close();
+    				Document doc2 = new Document(PageSize.A4.rotate());
+    				try {
+    					PdfWriter.getInstance(doc2, new FileOutputStream(fichier));
+    					doc2.open();
+    					doc2.add(new Paragraph("Regate : " + r.getNum()));
+    					doc2.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc2.add(new Paragraph("\n"));
+    					doc2.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    for(Voilier v : classe2) {
+    				    	table.addCell(String.valueOf(this.getPlace(v)));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    					}
+    				    
+    					doc2.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc2.close();
     				break;
     			case 3:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
-    				PrintWriter f3 = new PrintWriter(fichier);
-					f3.println("Regate : " + r.getNum());
-					f3.println("Nombre de participants : " + classe1.size());
-					f3.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
-					f3.println("___________________________________________________________________________________________");
-					f3.println("\n");
-					f3.println(COLONNE8.toUpperCase() + "\t | \t" + COLONNE1.toUpperCase() + "\t\t | \t" + COLONNE2.toUpperCase() + "\t | \t" + COLONNE3.toUpperCase() + "\t\t | \t" + COLONNE4.toUpperCase() + "\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase());
-					for(Voilier v : classe2) {
-						f3.println(r.getPlaceDansClassementGeneral(v) + "\t | \t" + v.getClasse() + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense());
-					}
-					f3.close();
+    				Document doc3 = new Document(PageSize.A4.rotate());
+    				try {
+    					PdfWriter.getInstance(doc3, new FileOutputStream(fichier));
+    					doc3.open();
+    					doc3.add(new Paragraph("Regate : " + r.getNum()));
+    					doc3.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc3.add(new Paragraph("\n"));
+    					doc3.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    table.addCell(COLONNE1.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    
+    				    for(Voilier v : classeGen) {
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    				    	table.addCell(String.valueOf(v.getClasse()));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    					}
+    				    
+    					doc3.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc3.close();
     				break;
     			}
 			} catch (IOException e1) {
