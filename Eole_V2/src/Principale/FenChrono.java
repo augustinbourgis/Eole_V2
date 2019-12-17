@@ -465,12 +465,12 @@ public class FenChrono extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		ArrayList<Voilier> v = new ArrayList<Voilier>();
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
-		v.add(new Voilier("Saturne", 1, 1, 1, "Thomas"));
+		v.add(new Voilier("SaturneV1", 1, 1, 1, "X"));
+		v.add(new Voilier("SaturneXXXXXX", 1, 1, 1, "XXXX"));
+		v.add(new Voilier("Saturne", 1, 1, 1, "XXXXXX"));
+		v.add(new Voilier("Sat", 1, 1, 1, "X"));
+		v.add(new Voilier("SaturneV3", 1, 1, 1, "XXXX"));
+		v.add(new Voilier("SaturneGD", 1, 1, 1, "XXXXXXXXXXXXXX"));
 		FenChrono f333 = new FenChrono("DDD", 1000, v);
 		f333.setVisible(true);
 	}
