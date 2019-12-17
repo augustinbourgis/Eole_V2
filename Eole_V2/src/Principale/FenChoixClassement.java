@@ -379,13 +379,13 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	public void print() {
 		switch(choix) {
 		case 1:
-			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.pdf"));
 			break;
 		case 2:
-			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.pdf"));
 			break;
 		case 3:
-			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
+			fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.pdf"));
 			break;
 		}
 		
@@ -430,9 +430,19 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     				break;
     			case 3:
     				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
+    				PrintWriter f3 = new PrintWriter(fichier);
+					f3.println("Regate : " + r.getNum());
+					f3.println("Nombre de participants : " + classe1.size());
+					f3.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
+					f3.println("___________________________________________________________________________________________");
+					f3.println("\n");
+					f3.println(COLONNE8.toUpperCase() + "\t | \t" + COLONNE1.toUpperCase() + "\t\t | \t" + COLONNE2.toUpperCase() + "\t | \t" + COLONNE3.toUpperCase() + "\t\t | \t" + COLONNE4.toUpperCase() + "\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase());
+					for(Voilier v : classe2) {
+						f3.println(r.getPlaceDansClassementGeneral(v) + "\t | \t" + v.getClasse() + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense());
+					}
+					f3.close();
     				break;
     			}
-				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
