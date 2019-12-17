@@ -23,6 +23,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -409,7 +410,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				fichier.createNewFile();
 				switch(choix) {
     			case 1:
-    				Document doc = new Document(PageSize.A4);
+    				Document doc = new Document(PageSize.A1);
     				try {
     					PdfWriter.getInstance(doc, new FileOutputStream(fichier));
     					doc.open();
