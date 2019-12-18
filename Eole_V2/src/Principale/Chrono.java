@@ -1,18 +1,8 @@
 package Principale;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import java.awt.Font;
-import javax.swing.Timer;
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * Description : Timer of the race
@@ -49,11 +39,11 @@ public class Chrono extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Inialisation de la fenetre
-	 * Chargement de tout les Ã©lements
+	 * Inialisation de la fenêtre
+	 * Chargement de tout les éléments
 	 */
 	public void initComp() {
-		this.setTitle("ChronomÃ¨tre");
+		this.setTitle("Chronomètre");
 		this.setPreferredSize(new Dimension(400,150));
 		
 		lblMin.setText("00");
@@ -104,7 +94,7 @@ public class Chrono extends JFrame implements ActionListener {
 			t.stop();
 		}
 		if(e.getSource() == btnReset) {
-			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redÃ©marer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
+			int n = JOptionPane.showConfirmDialog(this, "Voulez - vous redémarer le Chrono ?", "Reset ?", JOptionPane.YES_NO_OPTION);
 			if(n != 1) {
 				t.stop();
 				min = 0;

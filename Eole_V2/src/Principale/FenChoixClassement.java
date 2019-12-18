@@ -1,34 +1,12 @@
 package Principale;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfDocument;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import javax.swing.*;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
@@ -37,10 +15,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private static final String COLONNE2 = "Voilier";
 	private static final String COLONNE3 = "Nom skipper";
 	private static final String COLONNE4 = "Ratting";
-	private static final String COLONNE5 = "Tps reel";
-	private static final String COLONNE6 = "Tps composee";
+	private static final String COLONNE5 = "Tps réel";
+	private static final String COLONNE6 = "Tps composé (Sec)";
 	private static final String COLONNE7 = "Class. classe";
-	private static final String COLONNE8 = "Class. General";
+	private static final String COLONNE8 = "Class. général";
 	
 	private ArrayList<Voilier> classe1 = new ArrayList<Voilier>(); //ArrayList de la classe 1
 	private ArrayList<Voilier> classe2 = new ArrayList<Voilier>();	//ArrayList de la classe 2
@@ -61,9 +39,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JPanel panelGeneral = new JPanel();
 	private JPanel panelBoutons = new JPanel();
 	private JPanel panelClassement = new JPanel();
-	private JButton btnClassement1 = new JButton("Obtenir palmarï¿½s classe 1");
-	private JButton btnClassement2 = new JButton("Obtenir palmarï¿½s classe 2");
-	private JButton btnClassementTotal = new JButton("Obtenir palmarï¿½s gï¿½nï¿½ral");
+	private JButton btnClassement1 = new JButton("Obtenir palmarès classe 1");
+	private JButton btnClassement2 = new JButton("Obtenir palmarès classe 2");
+	private JButton btnClassementTotal = new JButton("Obtenir palmarès général");
 	private JButton btnExport = new JButton("Exporter");
 	final JFileChooser fc = new JFileChooser();
 
@@ -133,10 +111,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application ?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				 if(reponse == JOptionPane.YES_OPTION) {
 					 FenAccueil.btnNouvelleRgate.setEnabled(true);
-					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Regate");
+					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Régate");
 					 dispose();
 				 }
 			}
@@ -146,7 +124,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de connaitre le nombre de voilier ï¿½ afficher par classement
+	 * Permet de connaitre le nombre de voiliers à afficher par classement
 	 */
 	public void updateNbCases() {
 		switch(choix) {
@@ -166,7 +144,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet d'ajouter les boutons de haut de fenetre
+	 * Permet d'ajouter les boutons de haut de fenêtre
 	 */
 	public void ajoutBoutons() {
 		panelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -183,7 +161,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de crï¿½er les entetes des colonnes du classement
+	 * Permet de créer les entêtes des colonnes du classement
 	 */
 	public void enteteClassement() {
 		switch(choix) {
@@ -256,7 +234,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * @param v
 	 * le voilier
 	 * @return
-	 * la place dans le classement gï¿½neral
+	 * la place dans le classement général
 	 */
 	public int getPlaceGeneral(Voilier v) {
 		int place=0;
@@ -317,7 +295,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de mettre les entetes au classement
+	 * Permet de mettre les entêtes au classement
 	 */
 	public void addEntete() {
 		switch(choix) {
@@ -345,7 +323,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/** 
 	 * @author Augustin et Marine
-	 * Permet de charger le classement cliquer
+	 * Permet de charger le classement cliqué
 	 */
 	public void chargementClassement() {
 		updateNbCases();
@@ -401,12 +379,15 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		
 		int val_retour = fc.showSaveDialog(this);
 		
+		/**
+		 * Description : Création du fichier pdf pour l'export de la régate
+		 * @author Thomas DURST
+		 * 
+		 */
 		if (val_retour == JFileChooser.APPROVE_OPTION) {
 			double distanceKm = r.getDistance() * 1.609;
             File fichier = fc.getSelectedFile();
             String chemin = fichier.getAbsolutePath();
-            //afficher le chemin absolu du fichier
-            System.out.println("Chemin absolu : "+chemin+"\n");
             try {
 				fichier.createNewFile();
 				switch(choix) {
@@ -415,9 +396,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     				try {
     					PdfWriter.getInstance(doc, new FileOutputStream(fichier));
     					doc.open();
-    					doc.add(new Paragraph("Regate : " + r.getNum()));
+    					doc.add(new Paragraph("Régate : " + r.getNum()));
     					doc.add(new Paragraph("Nombre de participants : " + classe1.size()));
-    					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
     					doc.add(new Paragraph("\n"));
     					doc.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
@@ -451,9 +432,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     				try {
     					PdfWriter.getInstance(doc2, new FileOutputStream(fichier));
     					doc2.open();
-    					doc2.add(new Paragraph("Regate : " + r.getNum()));
+    					doc2.add(new Paragraph("Régate : " + r.getNum()));
     					doc2.add(new Paragraph("Nombre de participants : " + classe1.size()));
-    					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
     					doc2.add(new Paragraph("\n"));
     					doc2.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
@@ -487,9 +468,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     				try {
     					PdfWriter.getInstance(doc3, new FileOutputStream(fichier));
     					doc3.open();
-    					doc3.add(new Paragraph("Regate : " + r.getNum()));
+    					doc3.add(new Paragraph("Régate : " + r.getNum()));
     					doc3.add(new Paragraph("Nombre de participants : " + classe1.size()));
-    					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)"));
+    					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
     					doc3.add(new Paragraph("\n"));
     					doc3.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);

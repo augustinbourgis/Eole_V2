@@ -19,7 +19,7 @@ public class Skipper {
 	 * Getter de NOM
 	 * @return String
 	 * Le nom
-	 * @author Augustin et Wizard 
+	 * @author Augustin et Thomas 
 	 */
 	public String getNom() {
 		return nom;
@@ -32,7 +32,7 @@ public class Skipper {
 	 * Setter de nom
 	 * @param nom
 	 * Le nom
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -49,7 +49,7 @@ public class Skipper {
 	/**
 	 * @param nom
 	 * @param prenom
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public Skipper(String nom) {
 		this.nom = nom;

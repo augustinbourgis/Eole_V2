@@ -3,7 +3,6 @@ package Principale;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JPanel;
 
 /**
  * Description : fenêtre accueil
@@ -19,7 +18,7 @@ public class FenAccueil extends JFrame{
 	 * Description : variables de la classe FenAccueil
 	 */
 	JPanel Fen = new JPanel();
-	static JButton btnNouvelleRgate = new JButton("Nouvelle Regate");
+	static JButton btnNouvelleRgate = new JButton("Nouvelle Régate");
 	//JLabel qui sert de Logo
 	JLabel lblLogo = new JLabel(""); 
 	//JLabel qui sert d'image de fond
@@ -32,7 +31,7 @@ public class FenAccueil extends JFrame{
 	public FenAccueil() {
 		// Image Icon de la frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FenChrono.class.getResource("/Other/Maquette/planche.png")));
-		this.setTitle("Regate Eole");
+		this.setTitle("Régate Eole");
 		//position de la fenêtre
 		this.setBounds(0,0, 900, 480); 
 		//fenetre au centre
@@ -59,7 +58,7 @@ public class FenAccueil extends JFrame{
 				//bloquer le bouton
 				btnNouvelleRgate.setEnabled(false);
 				//change le texte du bouton
-				btnNouvelleRgate.setText("Regate en cours...");
+				btnNouvelleRgate.setText("Régate en cours...");
 			}
 		});
 		//logo de la régate

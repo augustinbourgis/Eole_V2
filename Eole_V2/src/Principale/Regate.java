@@ -66,7 +66,7 @@ public class Regate {
 	
 	/**
 	 * Getter Num
-	 * Retourne le nom de la regate
+	 * Retourne le nom de la régate
 	 * @return num
 	 */
 	public String getNum() {
@@ -83,7 +83,7 @@ public class Regate {
 	 * @param nom
 	 * @param distance
 	 * @param nbParticipants
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public Regate(String nom, int nbParticipants, int distance) {
 		this.distance = distance;
@@ -102,7 +102,7 @@ public class Regate {
 	 * QUE SI le nombre de participant est inférieur à 20
 	 * @param v le Voilier du participant
 	 * @return True si l'ajout est fait
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public boolean ajoutParticipant(Voilier v) {
 		if(nbParticipants < MAX_PARTICIPANT) {
@@ -114,7 +114,7 @@ public class Regate {
 	}
 
 	/**
-	 * Permet de mettre a jour les classsments
+	 * Permet de mettre à jour les classements
 	 * @author Augustin
 	 */
 	public void faireClassement() {
@@ -136,7 +136,7 @@ public class Regate {
 	 * Pour obtenir le classement général des participants
 	 * @return String 
 	 * Le classement des participants
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public String classementGeneral() {
 		String liste = "\tClassement Général : \n";
@@ -162,7 +162,7 @@ public class Regate {
 	 * Pour obtenir la liste des participants
 	 * @return String 
 	 * La liste des participants
-	 *  @author Augustin et Wizard
+	 *  @author Augustin et Thomas
 	 */
 	public String listeParticipants() {
 		String liste = "\tParticipants : \n";
@@ -171,7 +171,7 @@ public class Regate {
 				liste += v.toString() + "\n";
 			}
 		} catch (Exception e) {
-			System.out.println("Probleme avec l'ArrayList 'participant'");
+			System.out.println("Problème avec l'ArrayList 'participant'");
 			return "K.O";
 		}
 		liste += "Nombre de participants : " + nbParticipants;
@@ -188,7 +188,7 @@ public class Regate {
 	 * Pour obtenir le classement des participants de classe 1
 	 * @return String 
 	 * Classement des participants classe 1
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public String classementClasse1() {
 		String liste = "\t Classement Classe 1 : \n";
@@ -215,7 +215,7 @@ public class Regate {
 	 * Pour obtenir le classement des participants de classe 2
 	 * @return String 
 	 * Classement des participants classe 2
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
 	 */
 	public String classementClasse2() {
 		String liste = "\t Classement Classe 2 : \n";
@@ -240,10 +240,11 @@ public class Regate {
 	 * Pour obtenir les médaillés de classe 1
 	 * @return String 
 	 * Médaillés de classe 1
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
+	 * non utilisé
 	 */
 	public String medaillerClasse1() {
-		String liste = "\tMÃ©dailler Classe 1 : \n";
+		String liste = "\tMédaillés Classe 1 : \n";
 		int i = 0;
 		try {
 			for(Voilier v : classementClasse1) {
@@ -273,10 +274,11 @@ public class Regate {
 	 * Pour obtenir les médaillés de classe 2
 	 * @return String 
 	 * Médaillés de classe 2
-	 * @author Augustin et Wizard
+	 * @author Augustin et Thomas
+	 * non utilisé
 	 */
 	public String medaillerClasse2() {
-		String liste = "\tMÃ©dailler Classe 2 : \n";
+		String liste = "\t Médaillés Classe 2 : \n";
 		int i = 0;
 		try {
 			for(Voilier v : classementClasse2) {
@@ -330,7 +332,7 @@ public class Regate {
 	 * @return
 	 * TRUE : ajout réussi
 	 * FALSE : probleme avec l'ArrayList 'classementGene'
-	 * @author Augustin et Wizard 
+	 * @author Augustin et Thomas 
 	 *
 	 */
 	public boolean ajoutArrivee(Voilier v, int temps) {
