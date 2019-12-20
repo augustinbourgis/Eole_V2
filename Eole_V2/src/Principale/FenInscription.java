@@ -41,7 +41,7 @@ public class FenInscription extends JFrame implements ActionListener {
 	
 	JLabel lTitreParcours = new JLabel("PARCOURS");
 	JLabel lNomRegate = new JLabel("Nom : ");
-	JLabel lDistance = new JLabel("Distance (en miles) : ");
+	JLabel lDistance = new JLabel("Distance (en milles) : ");
 	
 	JTextField txtNomRegate = new JTextField("");
 	JTextField txtDistance = new JTextField("");
