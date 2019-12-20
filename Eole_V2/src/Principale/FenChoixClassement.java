@@ -433,7 +433,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     					PdfWriter.getInstance(doc2, new FileOutputStream(fichier));
     					doc2.open();
     					doc2.add(new Paragraph("Régate : " + r.getNum()));
-    					doc2.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc2.add(new Paragraph("Nombre de participants : " + classe2.size()));
     					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
     					doc2.add(new Paragraph("\n"));
     					doc2.add(new Paragraph("\n"));
@@ -469,7 +469,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     					PdfWriter.getInstance(doc3, new FileOutputStream(fichier));
     					doc3.open();
     					doc3.add(new Paragraph("Régate : " + r.getNum()));
-    					doc3.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc3.add(new Paragraph("Nombre de participants : " + classeGen.size()));
     					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
     					doc3.add(new Paragraph("\n"));
     					doc3.add(new Paragraph("\n"));
@@ -506,9 +506,5 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-	}
-	
-	public static void main(String[] args) {
-		new FenChoixClassement(new Regate("test", 10, 400));
 	}
 }
