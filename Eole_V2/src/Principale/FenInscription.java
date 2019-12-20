@@ -243,11 +243,10 @@ public class FenInscription extends JFrame implements ActionListener {
 			} else if(!txtClasse.getText().equals("1") && !txtClasse.getText().equals("2")) {
 				JOptionPane.showMessageDialog(this, "La classe doit être égale à 1 ou 2");
 			}else if(txtClasse.getText() != "" || txtNomSkipper.getText() != "" || txtNomVoilier.getText() != "" || txtNumeroVoilier.getText() != "" || txtRating.getText() != ""){
+				try {	
 					lesVoiliersInscrits.add(new Voilier(txtNomVoilier.getText(), Integer.valueOf(txtClasse.getText()), Integer.valueOf(txtRating.getText()), Integer.valueOf(txtNumeroVoilier.getText()), txtNomSkipper.getText()));
-					
 					modele.addElement("Nom voilier : " + txtNomVoilier.getText()+" | Skipper : "+txtNomSkipper.getText() +" | Classe : "+ txtClasse.getText()+ " | Rating : "+ txtRating.getText());
 					list.setModel(modele);
-					
 					SwingUtilities.updateComponentTreeUI(this);
 					temp++;
 					txtClasse.setText("");
@@ -255,6 +254,9 @@ public class FenInscription extends JFrame implements ActionListener {
 					txtNomVoilier.setText("");
 					txtRating.setText("");
 					txtNumeroVoilier.setText("");
+				}catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(this, "Certaines valeurs entrées ne sont pas en adéquation avec le type de valeur demandé");
+				}
 			}
 		}else if(e.getSource()==btnDemarrerRegate) {
 			if(txtNomRegate.getText().equals("") || txtDistance.getText().equals("") || lesVoiliersInscrits.isEmpty()) {
