@@ -1,24 +1,12 @@
 package Principale;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
@@ -27,10 +15,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private static final String COLONNE2 = "Voilier";
 	private static final String COLONNE3 = "Nom skipper";
 	private static final String COLONNE4 = "Ratting";
-	private static final String COLONNE5 = "Tps reel";
-	private static final String COLONNE6 = "Tps composee";
+	private static final String COLONNE5 = "Tps réel";
+	private static final String COLONNE6 = "Tps composé (Sec)";
 	private static final String COLONNE7 = "Class. classe";
-	private static final String COLONNE8 = "Class. General";
+	private static final String COLONNE8 = "Class. général";
 	
 	private ArrayList<Voilier> classe1 = new ArrayList<Voilier>(); //ArrayList de la classe 1
 	private ArrayList<Voilier> classe2 = new ArrayList<Voilier>();	//ArrayList de la classe 2
@@ -51,9 +39,9 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	private JPanel panelGeneral = new JPanel();
 	private JPanel panelBoutons = new JPanel();
 	private JPanel panelClassement = new JPanel();
-	private JButton btnClassement1 = new JButton("Obtenir palmarï¿½s classe 1");
-	private JButton btnClassement2 = new JButton("Obtenir palmarï¿½s classe 2");
-	private JButton btnClassementTotal = new JButton("Obtenir palmarï¿½s gï¿½nï¿½ral");
+	private JButton btnClassement1 = new JButton("Obtenir palmarès classe 1");
+	private JButton btnClassement2 = new JButton("Obtenir palmarès classe 2");
+	private JButton btnClassementTotal = new JButton("Obtenir palmarès général");
 	private JButton btnExport = new JButton("Exporter");
 	final JFileChooser fc = new JFileChooser();
 
@@ -123,10 +111,10 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application ?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				 if(reponse == JOptionPane.YES_OPTION) {
 					 FenAccueil.btnNouvelleRgate.setEnabled(true);
-					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Regate");
+					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Régate");
 					 dispose();
 				 }
 			}
@@ -136,7 +124,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de connaitre le nombre de voilier ï¿½ afficher par classement
+	 * Permet de connaitre le nombre de voiliers à afficher par classement
 	 */
 	public void updateNbCases() {
 		switch(choix) {
@@ -156,7 +144,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet d'ajouter les boutons de haut de fenetre
+	 * Permet d'ajouter les boutons de haut de fenêtre
 	 */
 	public void ajoutBoutons() {
 		panelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -173,7 +161,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de crï¿½er les entetes des colonnes du classement
+	 * Permet de créer les entêtes des colonnes du classement
 	 */
 	public void enteteClassement() {
 		switch(choix) {
@@ -246,7 +234,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 * @param v
 	 * le voilier
 	 * @return
-	 * la place dans le classement gï¿½neral
+	 * la place dans le classement général
 	 */
 	public int getPlaceGeneral(Voilier v) {
 		int place=0;
@@ -307,7 +295,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/**
 	 * @author Augustin et Marine
-	 * Permet de mettre les entetes au classement
+	 * Permet de mettre les entêtes au classement
 	 */
 	public void addEntete() {
 		switch(choix) {
@@ -335,7 +323,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	
 	/** 
 	 * @author Augustin et Marine
-	 * Permet de charger le classement cliquer
+	 * Permet de charger le classement cliqué
 	 */
 	public void chargementClassement() {
 		updateNbCases();
@@ -391,56 +379,126 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		
 		int val_retour = fc.showSaveDialog(this);
 		
+		/**
+		 * Description : Création du fichier pdf pour l'export de la régate
+		 * @author Thomas DURST
+		 * 
+		 */
 		if (val_retour == JFileChooser.APPROVE_OPTION) {
 			double distanceKm = r.getDistance() * 1.609;
             File fichier = fc.getSelectedFile();
             String chemin = fichier.getAbsolutePath();
-            //afficher le chemin absolu du fichier
-            System.out.println("Chemin absolu : "+chemin+"\n");
             try {
 				fichier.createNewFile();
 				switch(choix) {
     			case 1:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe1.txt"));
-    				PrintWriter fl = new PrintWriter(fichier);
-					fl.println("Regate : " + r.getNum());
-					fl.println("Nombre de participants : " + classe1.size());
-					fl.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Killometre(s)");
-					fl.println("___________________________________________________________________________________________");
-					fl.println("\n");
-					fl.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
-					for(Voilier v : classe1) {
-						fl.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
-					}
-					fl.close();
+    				Document doc = new Document(PageSize.A4.rotate());
+    				try {
+    					PdfWriter.getInstance(doc, new FileOutputStream(fichier));
+    					doc.open();
+    					doc.add(new Paragraph("Régate : " + r.getNum()));
+    					doc.add(new Paragraph("Nombre de participants : " + classe1.size()));
+    					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc.add(new Paragraph("\n"));
+    					doc.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    for(Voilier v : classe1) {
+    				    	table.addCell(String.valueOf(this.getPlace(v)));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    					}
+    				    
+    					doc.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc.close();
     				break;
     			case 2:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_Classe2.txt"));
-    				PrintWriter f2 = new PrintWriter(fichier);
-					f2.println("Regate : " + r.getNum());
-					f2.println("Nombre de participants : " + classe1.size());
-					f2.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
-					f2.println("___________________________________________________________________________________________");
-					f2.println("\n");
-					f2.println(COLONNE7.toUpperCase() + "\t | \t" + COLONNE2.toUpperCase() + "\t\t | \t" + COLONNE3.toUpperCase() + "\t | \t" + COLONNE4.toUpperCase() + "\t\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase() + "\t | \t" + COLONNE8.toUpperCase());
-					for(Voilier v : classe2) {
-						f2.println(this.getPlace(v) + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense() + "\t | \t" + r.getPlaceDansClassementGeneral(v));
-					}
-					f2.close();
+    				Document doc2 = new Document(PageSize.A4.rotate());
+    				try {
+    					PdfWriter.getInstance(doc2, new FileOutputStream(fichier));
+    					doc2.open();
+    					doc2.add(new Paragraph("Régate : " + r.getNum()));
+    					doc2.add(new Paragraph("Nombre de participants : " + classe2.size()));
+    					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc2.add(new Paragraph("\n"));
+    					doc2.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+    				    table.addCell(COLONNE7.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    for(Voilier v : classe2) {
+    				    	table.addCell(String.valueOf(this.getPlace(v)));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    					}
+    				    
+    					doc2.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc2.close();
     				break;
     			case 3:
-    				fc.setSelectedFile(new File("Regate_" + r.getNum() + "_ClasseGene.txt"));
-    				PrintWriter f3 = new PrintWriter(fichier);
-					f3.println("Regate : " + r.getNum());
-					f3.println("Nombre de participants : " + classe1.size());
-					f3.println("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilometre(s)");
-					f3.println("___________________________________________________________________________________________");
-					f3.println("\n");
-					f3.println(COLONNE8.toUpperCase() + "\t | \t" + COLONNE1.toUpperCase() + "\t\t | \t" + COLONNE2.toUpperCase() + "\t | \t" + COLONNE3.toUpperCase() + "\t\t | \t" + COLONNE4.toUpperCase() + "\t | \t" + COLONNE5.toUpperCase() + "\t | \t" + COLONNE6.toUpperCase());
-					for(Voilier v : classe2) {
-						f3.println(r.getPlaceDansClassementGeneral(v) + "\t | \t" + v.getClasse() + "\t | \t" + v.getNom() + "\t | \t" + v.skipper.getNom() + "\t | \t" + v.getRating() + "\t | \t" + v.getTempsHMS() + "\t | \t" + v.getTempsCompense());
-					}
-					f3.close();
+    				Document doc3 = new Document(PageSize.A4.rotate());
+    				try {
+    					PdfWriter.getInstance(doc3, new FileOutputStream(fichier));
+    					doc3.open();
+    					doc3.add(new Paragraph("Régate : " + r.getNum()));
+    					doc3.add(new Paragraph("Nombre de participants : " + classeGen.size()));
+    					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc3.add(new Paragraph("\n"));
+    					doc3.add(new Paragraph("\n"));
+    					PdfPTable table = new PdfPTable(7);
+    					table.setWidthPercentage(100);
+    					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+    				    table.addCell(COLONNE8.toUpperCase());
+    				    table.addCell(COLONNE1.toUpperCase());
+    				    table.addCell(COLONNE2.toUpperCase());
+    				    table.addCell(COLONNE3.toUpperCase());
+    				    table.addCell(COLONNE4.toUpperCase());
+    				    table.addCell(COLONNE5.toUpperCase());
+    				    table.addCell(COLONNE6.toUpperCase());
+    				    
+    				    for(Voilier v : classeGen) {
+    				    	table.addCell(String.valueOf(r.getPlaceDansClassementGeneral(v)));
+    				    	table.addCell(String.valueOf(v.getClasse()));
+    				    	table.addCell(v.getNom());
+    				    	table.addCell(v.skipper.getNom());
+    				    	table.addCell(String.valueOf(v.getRating()));
+    				    	table.addCell(String.valueOf(v.getTempsHMS()));
+    				    	table.addCell(String.valueOf(v.getTempsCompense()));
+    					}
+    				    
+    					doc3.add(table);
+    				} catch(Exception e) {
+    					e.getMessage();
+    				}
+    				doc3.close();
     				break;
     			}
 			} catch (IOException e1) {
@@ -448,9 +506,5 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-	}
-	
-	public static void main(String[] args) {
-		new FenChoixClassement(new Regate("test", 10, 400));
 	}
 }
