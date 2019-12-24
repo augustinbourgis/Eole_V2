@@ -2,9 +2,25 @@ package Principale;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javafx.stage.FileChooser;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
 
 /**
  * Description : fenêtre inscription
@@ -28,6 +44,12 @@ public class FenInscription extends JFrame implements ActionListener {
 	 * JFrame global elements
 	 * @author Marine
 	 */
+	// ---- Enregistemrent ----//
+	final JFileChooser fc = new JFileChooser();
+	
+	// ---- JMenu Bar ----//
+	JMenuItem save = new JMenuItem("Enregister");
+	JMenuItem open = new JMenuItem("Ouvrir");
 	
 	// ----- panel général ----//
 	JPanel panelGen = new JPanel();
@@ -84,6 +106,17 @@ public class FenInscription extends JFrame implements ActionListener {
 		this.setSize(1100, 480);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		
+		// ---- JMenu Bar ----//
+		JMenuBar bar = new JMenuBar();
+		JMenu fichier = new JMenu("Fichier");
+		fichier.add(open);
+		fichier.addSeparator();
+		fichier.add(save);
+		bar.add(fichier);
+		setJMenuBar(bar);
+		open.addActionListener(this);
+		save.addActionListener(this);
 		
 		// ---- panel général----//
 		panelGen.setLayout(new GridLayout(1, 2));
@@ -203,9 +236,17 @@ public class FenInscription extends JFrame implements ActionListener {
 			public void windowClosing(WindowEvent e) {
 				 int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter l'application ?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				 if(reponse == JOptionPane.YES_OPTION) {
-					 FenAccueil.btnNouvelleRgate.setEnabled(true);
-					 FenAccueil.btnNouvelleRgate.setText("Nouvelle Régate");
-					 dispose();
+					 int r2 = JOptionPane.showConfirmDialog(null, "Voulez-vous enregister les voiliers ?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					 if(r2 == JOptionPane.YES_OPTION) {
+						 save();
+						 FenAccueil.btnNouvelleRgate.setEnabled(true);
+						 FenAccueil.btnNouvelleRgate.setText("Nouvelle Régate");
+						 dispose();
+					 } else {
+						 FenAccueil.btnNouvelleRgate.setEnabled(true);
+						 FenAccueil.btnNouvelleRgate.setText("Nouvelle Régate");
+						 dispose();
+					 }
 				 }
 			}
 		});
@@ -277,9 +318,145 @@ public class FenInscription extends JFrame implements ActionListener {
 				list.revalidate();
 				temp--;
 			}
+		} else if(e.getSource() == save) {
+			save();
+		} else if(e.getSource() == open) {
+			open();
 		}
 	}
 
+	public void save() {
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
+	        Document doc = docBuilder.newDocument();
+	        
+	        Element racine = doc.createElement("Course");
+	        doc.appendChild(racine);
+	        
+	        for(Voilier v : lesVoiliersInscrits) {
+	        	Element voilier = doc.createElement("Voilier");
+		        racine.appendChild(voilier);
+		        
+	        	Attr att = doc.createAttribute("id");
+	        	att.setValue(String.valueOf(v.getNum()));
+	        	voilier.setAttributeNode(att);
+	        	
+	        	Element nomVoilier = doc.createElement("Nom_Voilier");
+	        	nomVoilier.appendChild(doc.createTextNode(v.getNom()));
+	            voilier.appendChild(nomVoilier);
+	            
+	            Element nomSkipper = doc.createElement("Nom_Skipper");
+	            nomSkipper.appendChild(doc.createTextNode(v.skipper.getNom()));
+	            voilier.appendChild(nomSkipper);
+	            
+	            Element classVoilier = doc.createElement("Classe_Voilier");
+	            classVoilier.appendChild(doc.createTextNode(String.valueOf(v.getClasse())));
+	            voilier.appendChild(classVoilier);
+	            
+	            Element ratingVoiler = doc.createElement("Rating_Voilier");
+	            ratingVoiler.appendChild(doc.createTextNode(String.valueOf(v.getRating())));
+	            voilier.appendChild(ratingVoiler);
+	        }
+	        
+	        Element nomCourse = doc.createElement("Nom_Course");
+	        nomCourse.appendChild(doc.createTextNode(txtNomRegate.getText()));
+	        racine.appendChild(nomCourse);
+	        
+	        Element distance = doc.createElement("Distance");
+	        distance.appendChild(doc.createTextNode(txtDistance.getText()));
+	        racine.appendChild(distance);
+	        
+	        // write the content into xml file
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	        Transformer transformer = transformerFactory.newTransformer();
+	        DOMSource source = new DOMSource(doc);
+	        fc.setSelectedFile(new File(txtNomRegate.getText() + ".xml"));
+	        fc.showSaveDialog(this);
+	        File fichier = fc.getSelectedFile();
+	        StreamResult resultat = new StreamResult(fichier);
+	        transformer.transform(source, resultat);
+	        
+	        JOptionPane.showMessageDialog(null, "Sauvegarde des données effectué", "Information", JOptionPane.INFORMATION_MESSAGE);
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Sauvegarde des données impossible", "Information", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void open() {
+		String nomVoilier;
+		String nomSkipper;
+		int classeVoiler, ratingVoilier, numVoilier;
+		try {
+			fc.setFileFilter(new Accept());
+			fc.setMultiSelectionEnabled(false);
+			fc.getSelectedFile();
+			fc.showOpenDialog(this);
+			File fichier = fc.getSelectedFile();
+			System.out.println(fichier.getAbsolutePath());
+			
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		    Document doc = dBuilder.parse(fichier);
+		    		
+			doc.getDocumentElement().normalize();
+			
+			NodeList nodes = doc.getElementsByTagName("Voilier");
+			
+			for(int i = 0; i < nodes.getLength(); i++) {
+				Node nNode = nodes.item(i);
+				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					numVoilier = Integer.parseInt(eElement.getAttribute("id"));
+					nomVoilier = eElement.getElementsByTagName("Nom_Voilier").item(0).getTextContent();
+					nomSkipper = eElement.getElementsByTagName("Nom_Skipper").item(0).getTextContent();
+					classeVoiler = Integer.parseInt(eElement.getElementsByTagName("Classe_Voilier").item(0).getTextContent());
+					ratingVoilier = Integer.parseInt(eElement.getElementsByTagName("Rating_Voilier").item(0).getTextContent());
+					lesVoiliersInscrits.add(new Voilier(nomVoilier, classeVoiler, ratingVoilier, numVoilier, nomSkipper));
+					modele.addElement("Nom voilier : " + nomVoilier+" | Skipper : "+nomSkipper +" | Classe : "+ classeVoiler+ " | Rating : "+ ratingVoilier);
+					list.setModel(modele);
+					SwingUtilities.updateComponentTreeUI(this);
+				}
+			}
+			
+			NodeList nodes1 = doc.getElementsByTagName("Nom_Course");
+		    Node node1 = nodes1.item(0);
+		    txtNomRegate.setText(node1.getTextContent());
+		    
+		    NodeList nodes2 = doc.getElementsByTagName("Distance");
+		    Node node2 = nodes2.item(0);
+		    txtDistance.setText(node2.getTextContent());
+		    
+		    JOptionPane.showMessageDialog(null, "Importation des données réussi", "Information", JOptionPane.INFORMATION_MESSAGE);
+		    
+		} catch(Exception e) {
+			e.getMessage();
+		}
+	}
+	
+	/**
+	 * Description : Class pour le filtre de recherche de fichier XML
+	 * @author Thomas DURST
+	 */
+	class Accept extends FileFilter {
+
+		@Override
+		public boolean accept(File f) {
+			// TODO Auto-generated method stub
+			if(f.getName().endsWith(".xml")) {
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public String getDescription() {
+			// TODO Auto-generated method stub
+			return "Fichier xml";
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		FenInscription fi = new FenInscription();
 		fi.setVisible(true);
