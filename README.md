@@ -1,2 +1,2 @@
 # Eole_V2
-le copié collé du ppe EOLE
+Cette application permet de générer une course de Skipper avec la gestion complète de celle-ci.
