@@ -10,7 +10,11 @@ import com.itextpdf.text.pdf.*;
 
 public class FenChoixClassement extends JFrame implements ActionListener{
 
-//-------------------------- Attributs --------------------------//
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7039547639063848696L;
+	//-------------------------- Attributs --------------------------//
 	private static final String COLONNE1 = "Classe"; //permet de modifier le nom des colonnes du classement
 	private static final String COLONNE2 = "Voilier";
 	private static final String COLONNE3 = "Nom skipper";
@@ -165,8 +169,19 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 	 */
 	public void enteteClassement() {
 		switch(choix) {
-		case 1: case 2:
-			lColonne7 = new JLabel(COLONNE7.toUpperCase());
+		case 1: 
+			lColonne7 = new JLabel(COLONNE7 + " 1".toUpperCase());
+			lColonne1 = new JLabel(COLONNE1.toUpperCase());
+			lColonne2 = new JLabel(COLONNE2.toUpperCase());
+			lColonne3 = new JLabel(COLONNE3.toUpperCase());
+			lColonne4 = new JLabel(COLONNE4.toUpperCase());
+			lColonne5 = new JLabel(COLONNE5.toUpperCase());
+			lColonne6 = new JLabel(COLONNE6.toUpperCase());
+			lColonne8 = new JLabel(COLONNE8.toUpperCase());
+			
+			break;
+		case 2:
+			lColonne7 = new JLabel(COLONNE7 + " 2".toUpperCase());
 			lColonne1 = new JLabel(COLONNE1.toUpperCase());
 			lColonne2 = new JLabel(COLONNE2.toUpperCase());
 			lColonne3 = new JLabel(COLONNE3.toUpperCase());
@@ -387,7 +402,6 @@ public class FenChoixClassement extends JFrame implements ActionListener{
 		if (val_retour == JFileChooser.APPROVE_OPTION) {
 			double distanceKm = r.getDistance() * 1.609;
             File fichier = fc.getSelectedFile();
-            String chemin = fichier.getAbsolutePath();
             try {
 				fichier.createNewFile();
 				switch(choix) {
@@ -399,6 +413,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     					doc.add(new Paragraph("Régate : " + r.getNum()));
     					doc.add(new Paragraph("Nombre de participants : " + classe1.size()));
     					doc.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc.add(new Paragraph("Classement classe 1"));
     					doc.add(new Paragraph("\n"));
     					doc.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
@@ -435,6 +450,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     					doc2.add(new Paragraph("Régate : " + r.getNum()));
     					doc2.add(new Paragraph("Nombre de participants : " + classe2.size()));
     					doc2.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc2.add(new Paragraph("Classement classe 2"));
     					doc2.add(new Paragraph("\n"));
     					doc2.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
@@ -471,6 +487,7 @@ public class FenChoixClassement extends JFrame implements ActionListener{
     					doc3.add(new Paragraph("Régate : " + r.getNum()));
     					doc3.add(new Paragraph("Nombre de participants : " + classeGen.size()));
     					doc3.add(new Paragraph("Distance : " + r.getDistance() + " Milles | Environ : " + distanceKm + " en Kilomètre(s)"));
+    					doc3.add(new Paragraph("Classement général"));
     					doc3.add(new Paragraph("\n"));
     					doc3.add(new Paragraph("\n"));
     					PdfPTable table = new PdfPTable(7);
